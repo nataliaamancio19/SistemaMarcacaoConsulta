@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             template="template.xhtml">
+   
+    <h:form>   
+            <h:panelGrid columns="2" cellpadding="5">
+            <p:outputLabel for="nome" value="Nome:" />
+            <p:inputText id="nome" required="true" validatorMessage="O nome deve ser preenchido"/>
+
+            <p:outputLabel for="cpf" value="Cpf:" />
+            <p:inputText id="cpf" required="true" />
+
+            <p:outputLabel for="sexo" value="Sexo:" />
+            <p:inputText id="sexo" required="true" />
+
+            <p:outputLabel for="dataNascimento" value="Data de Nascimento:" />
+            <p:inputText id="dataNascimento" required="true" />
+
+            <p:outputLabel for="telefone" value="Telefone:" />
+            <p:inputText id="telefone" required="true" />
+
+            <p:outputLabel for="email" value="E-mail:" />
+            <p:inputText id="email" required="true" />
+
+            <p:outputLabel for="cep" value="Cep: " />
+            <p:inputText id="cep" required="true" />
+
+            <p:button value="Cadastrar"/>
+            </h:panelGrid>   
+    </h:form>
+</ui:decorate>
