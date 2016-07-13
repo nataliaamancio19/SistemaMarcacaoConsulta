@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             template="template.xhtml">
+
+    <h:form id="convidado">
+        <p:fieldset legend="Convidado">
+           <h:panelGrid columns="3" cellpadding="5">
+               
+                <p:outputLabel for="nome" value="Nome:" />
+                <p:inputText id="nome" />
+                <p:message for="nome" id="messageDatetime" severity="error"/>
+
+                <p:outputLabel for="email" value="Email:" />
+                <p:inputText id="email" />
+                <p:message for="email" id="messageEmail" severity="error"/>
+
+                <p:outputLabel for="senha" value="Senha:" />
+                <p:password id="senha"  feedback="true"/>
+                <p:message for="senha" id="messageSenha" severity="error"/>
+
+                <p:outputLabel for="quantidadeSenhas" value="Quantidade de senhas: " />
+                <p:inputMask id="quantidadeSenhas"  mask="9?9"/>
+                <p:message for="quantidadeSenhas" id="messageSenhas" severity="error"/>
+
+            </h:panelGrid>   
+
+            <p:toolbarGroup>
+                <p:commandButton value="Salvar" ajax="false" update="@form" 
+                                 title="Salvar" icon="ui-icon-check" validateClient="false"/>
+                <p:commandButton value="Listar" update="@form" ajax="false"/>
+                <h:commandButton action="editarConvidado" immediate="true" value="Editar" />
+
+            </p:toolbarGroup>
+        </p:fieldset>
+    </h:form>
+    <h:form id="convidadoListar"> 
+        <p:fieldset legend="Noivos cadastrados">
+            <p:dataTable  var="convidado">
+                <p:column headerText="Opções">
+                    <p:commandButton id="deletar" value="Deletar" immediate="true"  update="@form"></p:commandButton>
+                </p:column>                
+                <p:column headerText="Nome" >
+                    <h:outputText ></h:outputText>
+                </p:column> 
+                <p:column headerText="Email" >
+                    <h:outputText ></h:outputText>
+                </p:column> 
+                <p:column headerText="Senha" >
+                    <h:outputText ></h:outputText>
+                </p:column>
+               
+            </p:dataTable>
+        </p:fieldset>
+    </h:form>
+</ui:decorate>
