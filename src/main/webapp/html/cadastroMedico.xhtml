@@ -5,9 +5,12 @@
              xmlns:p="http://primefaces.org/ui"
              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
              template="template.xhtml">
-    <h:form>
-        <p:fieldset >
-            <h:panelGrid columns="2">
+ 
+    
+     <h:form id="convidado">
+            <p:growl id="growl" autoUpdate="true" globalOnly="true" showDetail="true" life="4000" severity="info, warn"/>
+        <p:fieldset legend="Convidado">
+           <h:panelGrid columns="2">
                 <p:outputLabel for="nome" value="Nome:" />
                 <p:inputText id="nome" value="#{medicoBean.medico.nome}" required="true" validatorMessage="O nome deve ser preenchido"/>
                 
@@ -25,10 +28,40 @@
                 
                 <p:outputLabel for="especialidade" value="Especialidade :" />
                 <p:inputText id="especialidade" value="#{medicoBean.medico.especialidade}" required="true" />
-                
+                         
+            </h:panelGrid>
+
+            <p:toolbarGroup>
                 <p:commandButton action="#{medicoBean.salvar()}" value="Salvar" ajax="false" update="@form" 
                                  title="Salvar" icon="ui-icon-check" validateClient="false"/>
-            </h:panelGrid>
+                <p:commandButton value="Listar" update="@form" ajax="false"/>
+                <h:commandButton action="editarMedico" immediate="true" value="Editar" />
+
+            </p:toolbarGroup>
         </p:fieldset>
     </h:form>
+    <h:form id="convidadoListar"> 
+        <p:fieldset legend="Noivos cadastrados">
+            <p:dataTable value="#{medicoBean.listar()}"  var="medicoAtual">
+                <p:column headerText="Opções">
+                    <p:commandButton id="deletar" value="Deletar" action="#{medicoBean.excluir(medicoAtual)}" immediate="true"  update="@form"></p:commandButton>
+                </p:column>                
+                <p:column headerText="Nome" >
+                    <h:outputText value="#{medicoAtual.nome}"></h:outputText>
+                </p:column> 
+                <p:column headerText="Sexo" >
+                    <h:outputText value="#{medicoAtual.sexo}"></h:outputText>
+                </p:column> 
+                <p:column headerText="Telefone" >
+                    <h:outputText value="#{medicoAtual.telefone}"></h:outputText>
+                </p:column> 
+                <p:column headerText="Email" >
+                    <h:outputText value="#{medicoAtual.email}"></h:outputText>
+                </p:column> 
+                <p:column headerText="Crm" >
+                    <h:outputText value="#{medicoAtual.crm}"></h:outputText>
+                </p:column> 
+            </p:dataTable>
+        </p:fieldset>
+    </h:form>    
 </ui:decorate>

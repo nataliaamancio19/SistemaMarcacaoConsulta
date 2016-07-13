@@ -1,0 +1,64 @@
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             template="template.xhtml"
+             xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:form id="celular">
+     <p:fieldset legend="Convidado">
+           <h:panelGrid columns="2">
+                <p:outputLabel for="nome" value="Nome:" />
+                <p:inputText id="nome" value="#{medicoBean.medico.nome}" required="true" validatorMessage="O nome deve ser preenchido"/>
+                
+                <p:outputLabel for="sexo" value="Sexo:" />
+                <p:inputText id="sexo" value="#{medicoBean.medico.sexo}" required="true" />
+
+                <p:outputLabel for="telefone" value="Telefone:" />
+                <p:inputText id="telefone" value="#{medicoBean.medico.telefone}" required="true" />
+
+                <p:outputLabel for="email" value="E-mail:" />
+                <p:inputText id="email" value="#{medicoBean.medico.email}" required="true" />
+
+                <p:outputLabel for="crm" value="Crm:" />
+                <p:inputText id="crm" value="#{medicoBean.medico.crm}" required="true" />
+                
+                <p:outputLabel for="especialidade" value="Especialidade :" />
+                <p:inputText id="especialidade" value="#{medicoBean.medico.especialidade}" required="true" />
+                         
+            </h:panelGrid>
+
+            <p:toolbarGroup>
+                <p:commandButton action="#{medicoBean.salvar()}" value="Salvar" ajax="false" update="@form" 
+                                 title="Salvar" icon="ui-icon-check" validateClient="false"/>
+                <p:commandButton value="Listar" update="@form" ajax="false"/>
+                <h:commandButton action="editarConvidado" immediate="true" value="Editar" />
+
+            </p:toolbarGroup>
+        </p:fieldset>
+    </h:form>
+    <h:form id="convidadoListar"> 
+        <p:fieldset legend="Noivos cadastrados">
+            <p:dataTable value="#{medicoBean.listar()}"  var="medicoAtual">
+                <p:column headerText="Opções">
+                    <p:commandButton id="editar" value="Editar" action="#{medicoBean.editar(medicoAtual)}" immediate="true"  update="@form"></p:commandButton>
+                </p:column>                
+                <p:column headerText="Nome" >
+                    <h:outputText value="#{medicoAtual.nome}"></h:outputText>
+                </p:column> 
+                <p:column headerText="Sexo" >
+                    <h:outputText value="#{medicoAtual.sexo}"></h:outputText>
+                </p:column> 
+                <p:column headerText="Telefone" >
+                    <h:outputText value="#{medicoAtual.telefone}"></h:outputText>
+                </p:column> 
+                <p:column headerText="Email" >
+                    <h:outputText value="#{medicoAtual.email}"></h:outputText>
+                </p:column> 
+                <p:column headerText="Crm" >
+                    <h:outputText value="#{medicoAtual.crm}"></h:outputText>
+                </p:column> 
+            </p:dataTable>
+        </p:fieldset>
+    </h:form>
+</ui:decorate>

@@ -5,11 +5,8 @@ import java.util.Date;
 public class Consulta {
 
     private int id;
-
     private Paciente paciente;
-
     private Medico medico;
-
     private Date dataHora;
 
     public int getId() {

@@ -3,7 +3,7 @@ package beans;
 import dados.Dados;
 import entidades.Medico;
 import java.io.Serializable;
-import java.util.List;
+import java.util.ArrayList;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -17,9 +17,7 @@ public class MedicoBean implements Serializable {
     private Dados dados = new Dados();
 
     private Medico medico;
-    
-    private List<Medico> medicos;
-    
+        
     public MedicoBean()
     {
         medico = new Medico();
@@ -35,10 +33,49 @@ public class MedicoBean implements Serializable {
     
     public void salvar()
     {
-        dados.adicionarMedico(medico);
-        adicionarMessagem(FacesMessage.SEVERITY_INFO, "Médico salvo com sucesso!");
+        if(dados.adicionarMedico(medico))
+        {
+            adicionarMessagem(FacesMessage.SEVERITY_INFO, "Médico salvo com sucesso!");
+        }
+        else 
+        {
+            adicionarMessagem(FacesMessage.SEVERITY_INFO, "Médico já existe!");
+        }
+        
+        
     }
   
+    public ArrayList<Medico> listar()
+    {
+      return Dados.getListaDeMedicos();
+    }
+    
+    public void excluir(Medico medico)
+    {
+       if(dados.excluiMedico(medico))
+       {
+           adicionarMessagem(FacesMessage.SEVERITY_INFO, "Médico excluido com sucesso!");
+       }
+       else 
+       {
+           adicionarMessagem(FacesMessage.SEVERITY_INFO, "Médico não existe!");
+       }
+      
+    }
+    
+    public void editar(Medico medico)
+    {
+      if(dados.editarMedico(medico))
+      {
+         adicionarMessagem(FacesMessage.SEVERITY_INFO, "Médico editado com sucesso!");
+      }
+      else 
+      {
+          adicionarMessagem(FacesMessage.SEVERITY_INFO, "Médico não existe!");
+      }
+    }
+    
+    
      protected void adicionarMessagem(FacesMessage.Severity severity, String mensagem)
     {
         FacesMessage message = new FacesMessage(severity, mensagem, "");
