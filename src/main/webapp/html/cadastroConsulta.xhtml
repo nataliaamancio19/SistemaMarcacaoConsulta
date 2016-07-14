@@ -4,22 +4,59 @@
              xmlns:h="http://xmlns.jcp.org/jsf/html"
              xmlns:p="http://primefaces.org/ui"
              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-             template="template.xhtml">
+             template="template.xhtml"
+             xmlns:f="http://xmlns.jcp.org/jsf/core">
    
-    <h:form  id="convidado">   
-        
-            <h:panelGrid columns="2" cellpadding="5">
-                
+  <h:form id="consulta">
+            <p:growl id="growl" autoUpdate="true" globalOnly="true" showDetail="true" life="4000" severity="info, warn"/>
+        <p:fieldset legend="Consulta">
+           <h:panelGrid columns="2" cellpadding="5">
+            
             <p:outputLabel for="medico" value="Médico:" />
-            <p:inputText id="medico" required="true"/>
-
+            <p:selectOneMenu id="medico" converter="medicoConverter" value="#{consultaBean.consulta.medico}">
+                   <f:selectItems value="#{medicoBean.listar()}" var="medico" itemValue="#{medico}" itemLabel="#{medico.nome}"  />
+            </p:selectOneMenu>
+           
             <p:outputLabel for="paciente" value="Paciente:" />
             <p:inputText id="paciente" required="true" />
 
             <p:outputLabel for="dataHorario" value="Data e Hora:" />
             <p:inputText id="dataHorario" required="true" />
-            <br/>
+            
             <p:button value="Cadastrar"/>
-            </h:panelGrid>   
+            </h:panelGrid>  
+
+            <p:toolbarGroup>
+                <p:commandButton action="#{consultaBean.salvar()}" value="Salvar" ajax="false" update="@form" 
+                                 title="Salvar" icon="ui-icon-check" validateClient="false"/>
+                <h:commandButton action="editarConsulta" immediate="true" value="Editar" />
+
+            </p:toolbarGroup>
+        </p:fieldset>
     </h:form>
+    <h:form id="convidadoListar"> 
+        <p:fieldset legend="Consutas cadastradas">
+            <p:dataTable value="#{consultaBean.consulta}"  var="consultaAtual">
+                <p:column headerText="Opções">
+                    <p:commandButton id="deletar" value="Deletar" action="#{consultaBean.excluir(consultaAtual)}" immediate="true"  update="@form"></p:commandButton>
+                </p:column>                
+                <p:column headerText="Nome" >
+                    <h:outputText value="#{consultaAtual.medico.nome}"></h:outputText>
+                </p:column> 
+                <p:column headerText="Paciente" >
+                    <h:outputText value="#{consultaAtual.paciente.nome}"></h:outputText>
+                </p:column> 
+                 <p:column headerText="Data e Hora" >
+                    <h:outputText value="#{consultaAtual.dataHora}"></h:outputText>
+                </p:column> 
+            </p:dataTable>
+        </p:fieldset>
+    </h:form>    
+    
+    
+    
+    
+    
+    
+    
 </ui:decorate>

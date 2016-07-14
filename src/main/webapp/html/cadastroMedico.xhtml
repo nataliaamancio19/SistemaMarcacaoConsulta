@@ -9,7 +9,7 @@
     
      <h:form id="convidado">
             <p:growl id="growl" autoUpdate="true" globalOnly="true" showDetail="true" life="4000" severity="info, warn"/>
-        <p:fieldset legend="Convidado">
+        <p:fieldset legend="Médico">
            <h:panelGrid columns="2">
                 <p:outputLabel for="nome" value="Nome:" />
                 <p:inputText id="nome" value="#{medicoBean.medico.nome}" required="true" validatorMessage="O nome deve ser preenchido"/>
@@ -34,14 +34,13 @@
             <p:toolbarGroup>
                 <p:commandButton action="#{medicoBean.salvar()}" value="Salvar" ajax="false" update="@form" 
                                  title="Salvar" icon="ui-icon-check" validateClient="false"/>
-                <p:commandButton value="Listar" update="@form" ajax="false"/>
                 <h:commandButton action="editarMedico" immediate="true" value="Editar" />
 
             </p:toolbarGroup>
         </p:fieldset>
     </h:form>
     <h:form id="convidadoListar"> 
-        <p:fieldset legend="Noivos cadastrados">
+        <p:fieldset legend="Médicos cadastrados">
             <p:dataTable value="#{medicoBean.listar()}"  var="medicoAtual">
                 <p:column headerText="Opções">
                     <p:commandButton id="deletar" value="Deletar" action="#{medicoBean.excluir(medicoAtual)}" immediate="true"  update="@form"></p:commandButton>

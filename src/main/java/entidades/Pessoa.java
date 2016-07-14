@@ -2,7 +2,7 @@ package entidades;
 
 public class Pessoa  {
 
-    protected int id;
+    protected Integer id;
 
     private String nome;
 
@@ -30,13 +30,23 @@ public class Pessoa  {
         this.sexo = sexo;
     }
 
-    public int getId() {
+   
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
 
     public String getNome() {
         return nome;
@@ -53,24 +63,5 @@ public class Pessoa  {
     public void setEmail(String email) {
         this.email = email;
     }
-   
-    @Override
-    public boolean equals(Object o) {
-        if (o != null) {
-            if (o instanceof Pessoa) {
-                Pessoa outra = (Pessoa) o;
-                if (this.id == outra.id && this.nome.equals(outra.nome)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 53 * hash + this.id;
-        return hash;
-    }
+  
 }

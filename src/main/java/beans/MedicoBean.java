@@ -63,9 +63,9 @@ public class MedicoBean implements Serializable {
       
     }
     
-    public void editar(Medico medico)
+    public void editar(Medico medicoAtual)
     {
-      if(dados.editarMedico(medico))
+      if(dados.editarMedico(medicoAtual, medico))
       {
          adicionarMessagem(FacesMessage.SEVERITY_INFO, "Médico editado com sucesso!");
       }
