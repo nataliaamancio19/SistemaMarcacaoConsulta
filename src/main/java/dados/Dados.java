@@ -14,6 +14,7 @@ public class Dados {
     static ArrayList<Paciente> listaDePacientes = new ArrayList<>();
     static ArrayList<Consulta> listaDeConsultas = new ArrayList<>();
     static ArrayList<AgenteSaude> listaDeAgenteSaude = new ArrayList<>();
+
     boolean jaExiste;
     static int id_medico, id_paciente, id_consulta, id_agenteSaude;
 
@@ -22,6 +23,20 @@ public class Dados {
 
     }
 
+    public boolean validaLogin(String email, String senha)
+    {
+       for(AgenteSaude agenteAtual : listaDeAgenteSaude)
+       {
+           if(agenteAtual.getEmail().equals(email) && agenteAtual.getSenha().equals(senha))
+           {
+               return true;
+           }
+       }
+               
+               return false;
+    }
+    
+    
 
     public boolean adicionarMedico(Medico m) 
     {
@@ -149,6 +164,19 @@ public class Dados {
             return false;
         }
     }
+    
+    public boolean editarAgenteDeSaude(AgenteSaude agenteAntigo, AgenteSaude agenteAtual) 
+    {
+        if (listaDeAgenteSaude.contains(agenteAntigo)) 
+        {
+            listaDeAgenteSaude.set(listaDeAgenteSaude.indexOf(agenteAntigo), agenteAtual);
+            return true;
+        } 
+        else 
+        {
+            return false;
+        }
+    }
 
     public boolean excluiMedico(Medico m) 
     {
@@ -240,4 +268,43 @@ public class Dados {
         this.jaExiste = jaExiste;
     }
 
+    public static ArrayList<AgenteSaude> getListaDeAgenteSaude() {
+        return listaDeAgenteSaude;
+    }
+
+    public static void setListaDeAgenteSaude(ArrayList<AgenteSaude> listaDeAgenteSaude) {
+        Dados.listaDeAgenteSaude = listaDeAgenteSaude;
+    }
+
+    public static int getId_medico() {
+        return id_medico;
+    }
+
+    public static void setId_medico(int id_medico) {
+        Dados.id_medico = id_medico;
+    }
+
+    public static int getId_paciente() {
+        return id_paciente;
+    }
+
+    public static void setId_paciente(int id_paciente) {
+        Dados.id_paciente = id_paciente;
+    }
+
+    public static int getId_consulta() {
+        return id_consulta;
+    }
+
+    public static void setId_consulta(int id_consulta) {
+        Dados.id_consulta = id_consulta;
+    }
+
+    public static int getId_agenteSaude() {
+        return id_agenteSaude;
+    }
+
+    public static void setId_agenteSaude(int id_agenteSaude) {
+        Dados.id_agenteSaude = id_agenteSaude;
+    }
 }

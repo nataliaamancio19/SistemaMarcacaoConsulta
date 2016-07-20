@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head></h:head>
+    <h:body>
+        <h:form id="AgenteDeSaude">
+            <p:growl id="growl" autoUpdate="true" globalOnly="true" showDetail="true" life="4000" severity="info"/>
+            <p:fieldset legend="Agente de Saúde">
+                <h:panelGrid columns="3">
+
+                    <p:outputLabel for="nome" value="Nome:" />
+                    <p:inputText id="nome" value="#{agenteDeSaudeBean.agente.nome}" validatorMessage="Deve conter entre 5 à 30 caracteres.(somente letras)" requiredMessage="campo obrigatório!" required="true" >
+                        <f:validateLength minimum="5" maximum="30"/>
+                        <f:validateRegex pattern = "[A-Za-z ]+" />
+                    </p:inputText>
+                    <p:message for="nome" id="messageNome" severity="error"/>
+
+                    <p:outputLabel for="sexo" value="Sexo:" />
+                    <p:selectOneRadio id="sexo" requiredMessage="campo obrigatório!" required="true" value="#{agenteDeSaudeBean.agente.sexo}">
+                        <f:selectItem itemLabel="Feminino" itemValue="Feminino" />
+                        <f:selectItem itemLabel="Masculino" itemValue="Masculino"/>
+                    </p:selectOneRadio>
+                    <p:message for="sexo" id="messageSexo" severity="error"/>
+
+                    <p:outputLabel for="telefone" value="Telefone:" />
+                    <p:inputText id="telefone" value="#{agenteDeSaudeBean.agente.telefone}" validatorMessage="Deve ter entre 8 à 9 números." requiredMessage="campo obrigatório!" required="true" >
+                        <f:validateLength minimum="8" maximum="9"/>
+                        <f:validateRegex pattern="[0-9]+"  />
+                    </p:inputText>
+                    <p:message for="telefone" id="messageTelefone" severity="error"/>
+
+                    <p:outputLabel for="email" value="E-mail:" />
+                    <p:inputText id="email" value="#{agenteDeSaudeBean.agente.email}" requiredMessage="campo obrigatório!"  required="true" />
+                    <p:message for="email" id="messageEmail" severity="error"/>
+
+                    <p:outputLabel for="clinica" value="Clínica :" />
+                    <p:inputText id="clinica" value="#{agenteDeSaudeBean.agente.clinica}" validatorMessage="Deve conter entre 5 à 30 caracteres.(somente letras)" requiredMessage="campo obrigatório!"  required="true" >
+                        <f:validateLength minimum="5" maximum="30"/>
+                        <f:validateRegex pattern = "[A-Za-z ]+" />
+                    </p:inputText>
+                    <p:message for="clinica" id="messageEspecialidade" severity="error"/>
+
+                    <p:outputLabel for="cpf" value="Cpf:" />
+                    <p:inputText id="cpf" value="#{agenteDeSaudeBean.agente.cpf}" requiredMessage="campo obrigatório!"  required="true" />
+                    <p:message for="cpf" id="messageCpf" severity="error"/>
+
+                    <p:outputLabel for="senha" value="Senha:" />
+                    <p:password id="senha" value="#{agenteDeSaudeBean.agente.senha}" requiredMessage="campo obrigatório!" required="true" feedback="true"/>
+                    <p:message for="senha" id="messageSenha" severity="error"/>
+
+                </h:panelGrid>
+
+                <p:toolbarGroup>
+                    <p:commandButton action="#{agenteDeSaudeBean.salvar()}" value="Salvar" ajax="false" update="@form" title="Salvar" icon="ui-icon-check" validateClient="false"/>
+                    <p:commandButton action="login" value="Voltar" ajax="false" update="@form" icon="ui-icon-check" validateClient="false"/>
+
+                </p:toolbarGroup>
+            </p:fieldset>
+        </h:form>
+    </h:body>
+</html>

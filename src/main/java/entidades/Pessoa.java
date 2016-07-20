@@ -1,15 +1,19 @@
 package entidades;
 
+import javax.validation.constraints.NotNull;
+
 public class Pessoa  {
 
     protected Integer id;
 
+    @NotNull
     private String nome;
 
     private String email;
     
     private String telefone;
     
+    @NotNull
     private String cpf;
     
     private String sexo;

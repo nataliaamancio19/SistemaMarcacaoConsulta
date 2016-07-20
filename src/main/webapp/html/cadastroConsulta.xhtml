@@ -18,25 +18,22 @@
             </p:selectOneMenu>
            
             <p:outputLabel for="paciente" value="Paciente:" />
-            <p:inputText id="paciente" required="true" />
+            <p:inputText id="paciente" value="#{consultaBean.consulta.paciente}" />
 
             <p:outputLabel for="dataHorario" value="Data e Hora:" />
-            <p:inputText id="dataHorario" required="true" />
-            
-            <p:button value="Cadastrar"/>
+            <p:calendar id="dataHorario" value="#{consultaBean.consulta.dataHora}" required="true" pattern="yyyy/MM/dd HH:mm:ss" />
+         
             </h:panelGrid>  
-
-            <p:toolbarGroup>
+            
                 <p:commandButton action="#{consultaBean.salvar()}" value="Salvar" ajax="false" update="@form" 
                                  title="Salvar" icon="ui-icon-check" validateClient="false"/>
                 <h:commandButton action="editarConsulta" immediate="true" value="Editar" />
 
-            </p:toolbarGroup>
         </p:fieldset>
     </h:form>
     <h:form id="convidadoListar"> 
         <p:fieldset legend="Consutas cadastradas">
-            <p:dataTable value="#{consultaBean.consulta}"  var="consultaAtual">
+            <p:dataTable value="#{consultaBean.listar()}"  var="consultaAtual">
                 <p:column headerText="Opções">
                     <p:commandButton id="deletar" value="Deletar" action="#{consultaBean.excluir(consultaAtual)}" immediate="true"  update="@form"></p:commandButton>
                 </p:column>                

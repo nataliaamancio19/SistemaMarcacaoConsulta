@@ -2,28 +2,51 @@
              xmlns:h="http://xmlns.jcp.org/jsf/html"
              xmlns:p="http://primefaces.org/ui"
              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-             template="template.xhtml">
+             template="template.xhtml"
+             xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:form id="celular">
-        <p:fieldset legend="Médico">
-            <h:panelGrid columns="2">
-                <p:outputLabel for="nome" value="Nome:" />
-                <p:inputText id="nome" value="#{medicoBean.medico.nome}" required="true" validatorMessage="O nome deve ser preenchido"/>
+        <p:fieldset legend="Editar Médico">
+            <h:panelGrid columns="3">
+                
+             <p:outputLabel for="nome" value="Nome:" />
+                <p:inputText id="nome" value="#{medicoBean.medico.nome}" validatorMessage="Deve conter entre 5 à 30 caracteres.(somente letras)" requiredMessage="campo obrigatório!" required="true" >
+                    <f:validateLength minimum="5" maximum="30"/>
+                    <f:validateRegex pattern = "[A-Za-z ]+" />
+                </p:inputText>
+                <p:message for="nome" id="messageNome" severity="error"/>
 
                 <p:outputLabel for="sexo" value="Sexo:" />
-                <p:inputText id="sexo" value="#{medicoBean.medico.sexo}" required="true" />
+                <p:selectOneRadio id="sexo" requiredMessage="campo obrigatório!" required="true" value="#{medicoBean.medico.sexo}">
+                    <f:selectItem itemLabel="Feminino" itemValue="Feminino" />
+                    <f:selectItem itemLabel="Masculino" itemValue="Masculino"/>
+                </p:selectOneRadio>
+                <p:message for="sexo" id="messageSexo" severity="error"/>
 
                 <p:outputLabel for="telefone" value="Telefone:" />
-                <p:inputText id="telefone" value="#{medicoBean.medico.telefone}" required="true" />
+                <p:inputText id="telefone" value="#{medicoBean.medico.telefone}" validatorMessage="Deve ter entre 8 à 9 números." requiredMessage="campo obrigatório!" required="true" >
+                    <f:validateLength minimum="8" maximum="9"/>
+                    <f:validateRegex pattern="[0-9]+"  />
+                </p:inputText>
+                <p:message for="telefone" id="messageTelefone" severity="error"/>
 
                 <p:outputLabel for="email" value="E-mail:" />
-                <p:inputText id="email" value="#{medicoBean.medico.email}" required="true" />
+                <p:inputText id="email" value="#{medicoBean.medico.email}" requiredMessage="campo obrigatório!"  required="true" />
+                <p:message for="email" id="messageEmail" severity="error"/>
 
                 <p:outputLabel for="crm" value="Crm:" />
-                <p:inputText id="crm" value="#{medicoBean.medico.crm}" required="true" />
+                <p:inputText id="crm" value="#{medicoBean.medico.crm}" validatorMessage="O crm deve ter entre 4 e 10 números."  requiredMessage="campo obrigatório!"  required="true" >
+                    <f:validateLength minimum="4" maximum="10"/>
+                    <f:validateRegex pattern="[0-9]+"  />
+                </p:inputText>
+                <p:message for="crm" id="messageCrm" severity="error"/>
 
                 <p:outputLabel for="especialidade" value="Especialidade :" />
-                <p:inputText id="especialidade" value="#{medicoBean.medico.especialidade}" required="true" />
+                <p:inputText id="especialidade" value="#{medicoBean.medico.especialidade}" validatorMessage="Deve conter entre 5 à 30 caracteres.(somente letras)" requiredMessage="campo obrigatório!"  required="true" >
+                    <f:validateLength minimum="5" maximum="30"/>
+                    <f:validateRegex pattern = "[A-Za-z ]+" />
+                </p:inputText>
+                <p:message for="especialidade" id="messageEspecialidade" severity="error"/>
 
             </h:panelGrid>
 
@@ -32,7 +55,7 @@
         <p:fieldset legend="Médicos cadastrados">
             <p:dataTable value="#{medicoBean.listar()}"  var="medicoAtual">
                 <p:column headerText="Opções">
-                    <p:commandButton id="editar" type="submit" value="Editar" action="#{medicoBean.editar(medicoAtual)}" immediate="true"  update="@form"></p:commandButton>
+                    <p:commandButton id="editar" value="Editar" action="#{medicoBean.editar(medicoAtual)}" ajax="false" update="@form"></p:commandButton>
                 </p:column>                
                 <p:column headerText="Nome" >
                     <h:outputText value="#{medicoAtual.nome}"></h:outputText>

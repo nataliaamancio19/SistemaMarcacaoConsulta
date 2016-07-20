@@ -1,12 +1,19 @@
 package entidades;
 
 import java.util.Date;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.NotNull;
 
 public class Consulta {
 
     private int id;
+    
+    
     private Paciente paciente;
     private Medico medico;
+    
+    @NotNull
+    @Future
     private Date dataHora;
 
     public int getId() {
