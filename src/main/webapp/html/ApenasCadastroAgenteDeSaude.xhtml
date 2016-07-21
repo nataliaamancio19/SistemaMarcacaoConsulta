@@ -60,7 +60,7 @@ and open the template in the editor.
 
                 <p:toolbarGroup>
                     <p:commandButton action="#{agenteDeSaudeBean.salvar()}" value="Salvar" ajax="false" update="@form" title="Salvar" icon="ui-icon-check" validateClient="false"/>
-                    <p:commandButton action="login" value="Voltar" ajax="false" update="@form" icon="ui-icon-check" validateClient="false"/>
+                    <p:commandButton action="login" value="Voltar" immediate="true" update="@form" ajax="true" icon="ui-icon-check"/>
 
                 </p:toolbarGroup>
             </p:fieldset>

@@ -9,113 +9,56 @@
     <h:form>   
             <h:panelGrid columns="2" cellpadding="5">
             <p:outputLabel for="nome" value="Nome:" />
-            <p:inputText id="nome" required="true" validatorMessage="O nome deve ser preenchido"/>
+            <p:inputText id="nome" required="true" value="#{pacienteBean.paciente.nome}" validatorMessage="O nome deve ser preenchido"/>
 
             <p:outputLabel for="cpf" value="Cpf:" />
-            <p:inputText id="cpf" required="true" />
+            <p:inputText id="cpf" required="true" value="#{pacienteBean.paciente.cpf}" />
 
             <p:outputLabel for="sexo" value="Sexo:" />
-            <p:inputText id="sexo" required="true" />
+            <p:inputText id="sexo" required="true" value="#{pacienteBean.paciente.sexo}"/>
 
             <p:outputLabel for="dataNascimento" value="Data de Nascimento:" />
-            <p:inputText id="dataNascimento" required="true" />
+            <p:inputText id="dataNascimento" required="false" value="#{pacienteBean.paciente.dataNascimento}"/>
 
+            <p:outputLabel for="telefone" value="Numero SUS:" />
+            <p:inputText id="telefone" required="true" value="#{pacienteBean.paciente.numero_sus}"/>
+           
             <p:outputLabel for="telefone" value="Telefone:" />
-            <p:inputText id="telefone" required="true" />
+            <p:inputText id="telefone" required="true" value="#{pacienteBean.paciente.telefone}"/>
 
             <p:outputLabel for="email" value="E-mail:" />
-            <p:inputText id="email" required="true" />
+            <p:inputText id="email" required="true" value="#{pacienteBean.paciente.email}"/>
 
             <p:outputLabel for="cep" value="Cep: " />
-            <p:inputText id="cep" required="true" />
+            <p:inputText id="cep" required="true" value="#{pacienteBean.paciente.cep}"/>
 
-            <p:button value="Cadastrar"/>
-            </h:panelGrid>   
-    </h:form>
-</ui:decorate>
-
-
-
-
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
-             xmlns:h="http://xmlns.jcp.org/jsf/html"
-             xmlns:p="http://primefaces.org/ui"
-             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-             template="template.xhtml">
-   
-  <h:form id="consulta">
-            <p:growl id="growl" autoUpdate="true" globalOnly="true" showDetail="true" life="4000" severity="info, warn"/>
-        <p:fieldset legend="Paciente">
-           <h:panelGrid columns="2" cellpadding="5">
-            <p:outputLabel for="nome" value="Nome:" />
-            <p:inputText id="nome" required="true" />
-
-            <p:outputLabel for="cpf" value="Cpf:" />
-            <p:inputText id="cpf" required="true" />
-
-            <p:outputLabel for="sexo" value="Sexo:" />
-            <p:inputText id="sexo" required="true" />
-
-            <p:outputLabel for="dataNascimento" value="Data de Nascimento:" />
-            <p:inputText id="dataNascimento" required="true" />
-
-            <p:outputLabel for="telefone" value="Telefone:" />
-            <p:inputText id="telefone" required="true" />
-
-            <p:outputLabel for="email" value="E-mail:" />
-            <p:inputText id="email" required="true" />
-
-            <p:outputLabel for="cep" value="Cep: " />
-            <p:inputText id="cep" required="true" />
-
-            <p:button value="Cadastrar"/>
-            </h:panelGrid>   
-
-            <p:toolbarGroup>
-                <p:commandButton action="#{medicoBean.salvar()}" value="Salvar" ajax="false" update="@form" 
+            <p:commandButton action="#{pacienteBean.salvar()}" value="Salvar" ajax="false" update="@form" 
                                  title="Salvar" icon="ui-icon-check" validateClient="false"/>
-                <h:commandButton action="editarMedico" immediate="true" value="Editar" />
-
-            </p:toolbarGroup>
-        </p:fieldset>
+            </h:panelGrid>   
     </h:form>
-    <h:form id="convidadoListar"> 
-        <p:fieldset legend="Médicos cadastrados">
-            <p:dataTable value="#{medicoBean.listar()}"  var="medicoAtual">
+     <h:form id="convidadoListar"> 
+        <p:fieldset legend="Pacientes Cadastrados">
+            <p:dataTable value="#{pacienteBean.consultar()}"  var="pacienteAtual">
                 <p:column headerText="Opções">
-                    <p:commandButton id="deletar" value="Deletar" action="#{medicoBean.excluir(medicoAtual)}" immediate="true"  update="@form"></p:commandButton>
+                    <p:commandButton id="deletar" value="Deletar" action="#{pacienteBean.excluir()}" immediate="true"  update="@form"></p:commandButton>
                 </p:column>                
                 <p:column headerText="Nome" >
-                    <h:outputText value="#{medicoAtual.nome}"></h:outputText>
+                    <h:outputText value="#{pacienteAtual.nome}"></h:outputText>
                 </p:column> 
                 <p:column headerText="Sexo" >
-                    <h:outputText value="#{medicoAtual.sexo}"></h:outputText>
+                    <h:outputText value="#{pacienteAtual.sexo}"></h:outputText>
                 </p:column> 
                 <p:column headerText="Telefone" >
-                    <h:outputText value="#{medicoAtual.telefone}"></h:outputText>
+                    <h:outputText value="#{pacienteAtual.telefone}"></h:outputText>
                 </p:column> 
                 <p:column headerText="Email" >
-                    <h:outputText value="#{medicoAtual.email}"></h:outputText>
+                    <h:outputText value="#{pacienteAtual.email}"></h:outputText>
                 </p:column> 
-                <p:column headerText="Crm" >
-                    <h:outputText value="#{medicoAtual.crm}"></h:outputText>
-                </p:column> 
+               <p:column headerText="Numero do SUS" >
+                     <h:outputText value="#{pacienteAtual.numero_sus}"></h:outputText>
+                </p:column>
             </p:dataTable>
         </p:fieldset>
     </h:form>    
     
-    
-    
-    
-    
-    
-    
 </ui:decorate>
-
-
-
-
-
-

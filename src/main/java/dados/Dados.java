@@ -7,7 +7,7 @@ import entidades.Paciente;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Dados {
+public final class Dados {
 
     
     static ArrayList<Medico> listaDeMedicos = new ArrayList<>();
@@ -20,7 +20,7 @@ public class Dados {
 
     public Dados() 
     {
-
+      
     }
 
     public boolean validaLogin(String email, String senha)

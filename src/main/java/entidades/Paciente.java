@@ -59,12 +59,12 @@ public class Paciente extends Pessoa  {
         this.cep = cep;
     }
 
-    public Date getData() {
+    public Date getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setData(Date data) {
-        this.dataNascimento = data;
+    public void setDataNascimento(Date dataNascimento) {
+        this.dataNascimento = dataNascimento;
     }
 
     public EstadosDoBrasil getEstado() {
