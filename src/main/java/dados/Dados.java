@@ -9,18 +9,20 @@ import java.util.Date;
 
 public final class Dados {
 
-    
-    static ArrayList<Medico> listaDeMedicos = new ArrayList<>();
+
+    static ArrayList<Medico> listaDeMedicos = new ArrayList<Medico>()
+    {{ add(new Medico("Endocrinologista", "1234", "Ana", "ana@gmail.com", "8196562545", "03212165584", "feminino")); }};
     static ArrayList<Paciente> listaDePacientes = new ArrayList<>();
     static ArrayList<Consulta> listaDeConsultas = new ArrayList<>();
-    static ArrayList<AgenteSaude> listaDeAgenteSaude = new ArrayList<>();
+    static ArrayList<AgenteSaude> listaDeAgenteSaude = new ArrayList<AgenteSaude>()
+    {{ add(new AgenteSaude("fulano123", "Santa Tereza", "Fulano", "fulano@gmail.com", "8199999999", "089.828.254.65", "masculino")); }};
 
     boolean jaExiste;
     static int id_medico, id_paciente, id_consulta, id_agenteSaude;
 
     public Dados() 
     {
-      
+    
     }
 
     public boolean validaLogin(String email, String senha)

@@ -29,7 +29,6 @@
 
                 <p:outputLabel for="telefone" value="Telefone:" />
                 <p:inputText id="telefone" value="#{agenteDeSaudeBean.agente.telefone}" validatorMessage="Deve ter entre 8 à 9 números." requiredMessage="campo obrigatório!" required="true" >
-                    <f:validateLength minimum="8" maximum="9"/>
                     <f:validateRegex pattern="[0-9]+"  />
                 </p:inputText>
                 <p:message for="telefone" id="messageTelefone" severity="error"/>
@@ -57,7 +56,7 @@
 
             <p:toolbarGroup>
                 <p:commandButton action="#{agenteDeSaudeBean.salvar()}" value="Salvar" ajax="false" update="@form" title="Salvar" icon="ui-icon-check" validateClient="false"/>
-                <h:commandButton action="editarAgendeDeSaudeBean" immediate="true" value="Editar" />
+                <p:commandButton action="editarAgendeDeSaudeBean" ajax="false" immediate="true" value="Editar" />
             </p:toolbarGroup>
         </p:fieldset>
     </h:form>

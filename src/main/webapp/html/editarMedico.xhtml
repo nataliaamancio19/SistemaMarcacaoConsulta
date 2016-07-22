@@ -53,9 +53,9 @@
         </p:fieldset>
 
         <p:fieldset legend="Médicos cadastrados">
-            <p:dataTable value="#{medicoBean.listar()}"  var="medicoAtual">
+            <p:dataTable value="#{medicoBean.listar()}" id="#{medicoAtual.crm}" var="medicoAtual">
                 <p:column headerText="Opções">
-                    <p:commandButton id="editar" value="Editar" action="#{medicoBean.editar(medicoAtual)}" ajax="false" update="@form"></p:commandButton>
+                    <p:commandButton id="editar" value="Editar" onclick="carregaDados(#{medicoAtual.crm});" immediate="true"></p:commandButton>
                 </p:column>                
                 <p:column headerText="Nome" >
                     <h:outputText value="#{medicoAtual.nome}"></h:outputText>
@@ -78,4 +78,10 @@
             </p:dataTable>
         </p:fieldset>
     </h:form>
+    <script type="text/javascript">
+        function carregaDados(crm)
+        {
+            alert(crm);
+        }
+    </script>
 </ui:decorate>

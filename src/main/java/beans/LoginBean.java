@@ -2,6 +2,7 @@
 package beans;
 
 import dados.Dados;
+import entidades.AgenteSaude;
 import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
@@ -13,28 +14,26 @@ import javax.faces.context.FacesContext;
 public class LoginBean implements Serializable{
     
     private Dados dados = new Dados();
-    private String email, senha;
+    AgenteSaude agente;
 
-    public String getEmail() {
-        return email;
+    
+    public LoginBean()
+    {
+        agente = new AgenteSaude();
+    }
+    
+    public void setAgente(AgenteSaude agente) {
+        this.agente = agente;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public AgenteSaude getAgente() {
+        return agente;
     }
 
     
     public String validaLogin()
     {
-        if(dados.validaLogin(email, senha))
+        if(dados.validaLogin(agente.getEmail(), agente.getSenha()))
         {
             return "sucesso";
         }

@@ -1,92 +1,109 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:decorate xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      template="template.xhtml"    
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:f="http://xmlns.jcp.org/jsf/core"
+             template="template.xhtml"    
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <h:form id="AgenteDeSaude">
+            <p:growl id="growl" autoUpdate="true" globalOnly="true" showDetail="true" life="4000" severity="info, warn"/>
+            <p:fieldset legend="Editar Agente de Saúde">
+                <h:panelGrid columns="3">
 
-    <h:form id="AgenteDeSaude">
-        <p:growl id="growl" autoUpdate="true" globalOnly="true" showDetail="true" life="4000" severity="info, warn"/>
-        <p:fieldset legend="Editar Agente de Saúde">
-            <h:panelGrid columns="3">
+                    <p:outputLabel for="nome" value="Nome:" />
+                    <p:inputText id="nome" value="#{agenteDeSaudeBean.agente.nome}" validatorMessage="Deve conter entre 5 à 30 caracteres.(somente letras)" requiredMessage="campo obrigatório!" required="true" >
+                        <f:validateLength minimum="5" maximum="30"/>
+                        <f:validateRegex pattern = "[A-Za-z ]+" />
+                    </p:inputText>
+                    <p:message for="nome" id="messageNome" severity="error"/>
 
-                <p:outputLabel for="nome" value="Nome:" />
-                <p:inputText id="nome" value="#{agenteDeSaudeBean.agente.nome}" validatorMessage="Deve conter entre 5 à 30 caracteres.(somente letras)" requiredMessage="campo obrigatório!" required="true" >
-                    <f:validateLength minimum="5" maximum="30"/>
-                    <f:validateRegex pattern = "[A-Za-z ]+" />
-                </p:inputText>
-                <p:message for="nome" id="messageNome" severity="error"/>
+                    <p:outputLabel for="sexo" value="Sexo:" />
+                    <p:selectOneRadio id="sexo" requiredMessage="campo obrigatório!" required="true" value="#{agenteDeSaudeBean.agente.sexo}">
+                        <f:selectItem itemLabel="Feminino" itemValue="Feminino" />
+                        <f:selectItem itemLabel="Masculino" itemValue="Masculino"/>
+                    </p:selectOneRadio>
+                    <p:message for="sexo" id="messageSexo" severity="error"/>
 
-                <p:outputLabel for="sexo" value="Sexo:" />
-                <p:selectOneRadio id="sexo" requiredMessage="campo obrigatório!" required="true" value="#{agenteDeSaudeBean.agente.sexo}">
-                    <f:selectItem itemLabel="Feminino" itemValue="Feminino" />
-                    <f:selectItem itemLabel="Masculino" itemValue="Masculino"/>
-                </p:selectOneRadio>
-                <p:message for="sexo" id="messageSexo" severity="error"/>
+                    <p:outputLabel for="telefone" value="Telefone:" />
+                    <p:inputText id="telefone" value="#{agenteDeSaudeBean.agente.telefone}" validatorMessage="Deve ter entre 8 à 9 números." requiredMessage="campo obrigatório!" required="true" >
+                        <f:validateLength minimum="8" maximum="9"/>
+                        <f:validateRegex pattern="[0-9]+"  />
+                    </p:inputText>
+                    <p:message for="telefone" id="messageTelefone" severity="error"/>
 
-                <p:outputLabel for="telefone" value="Telefone:" />
-                <p:inputText id="telefone" value="#{agenteDeSaudeBean.agente.telefone}" validatorMessage="Deve ter entre 8 à 9 números." requiredMessage="campo obrigatório!" required="true" >
-                    <f:validateLength minimum="8" maximum="9"/>
-                    <f:validateRegex pattern="[0-9]+"  />
-                </p:inputText>
-                <p:message for="telefone" id="messageTelefone" severity="error"/>
+                    <p:outputLabel for="email" value="E-mail:" />
+                    <p:inputText id="email" value="#{agenteDeSaudeBean.agente.email}" requiredMessage="campo obrigatório!"  required="true" />
+                    <p:message for="email" id="messageEmail" severity="error"/>
 
-                <p:outputLabel for="email" value="E-mail:" />
-                <p:inputText id="email" value="#{agenteDeSaudeBean.agente.email}" requiredMessage="campo obrigatório!"  required="true" />
-                <p:message for="email" id="messageEmail" severity="error"/>
+                    <p:outputLabel for="clinica" value="Clínica :" />
+                    <p:inputText id="clinica" value="#{agenteDeSaudeBean.agente.clinica}" validatorMessage="Deve conter entre 5 à 30 caracteres.(somente letras)" requiredMessage="campo obrigatório!"  required="true" >
+                        <f:validateLength minimum="5" maximum="30"/>
+                        <f:validateRegex pattern = "[A-Za-z ]+" />
+                    </p:inputText>
+                    <p:message for="clinica" id="messageEspecialidade" severity="error"/>
 
-                <p:outputLabel for="clinica" value="Clínica :" />
-                <p:inputText id="clinica" value="#{agenteDeSaudeBean.agente.clinica}" validatorMessage="Deve conter entre 5 à 30 caracteres.(somente letras)" requiredMessage="campo obrigatório!"  required="true" >
-                    <f:validateLength minimum="5" maximum="30"/>
-                    <f:validateRegex pattern = "[A-Za-z ]+" />
-                </p:inputText>
-                <p:message for="clinica" id="messageEspecialidade" severity="error"/>
+                    <p:outputLabel for="cpf" value="Cpf:" />
+                    <p:inputText id="cpf" value="#{agenteDeSaudeBean.agente.cpf}" requiredMessage="campo obrigatório!"  required="true" />
+                    <p:message for="cpf" id="messageCpf" severity="error"/>
 
-                <p:outputLabel for="cpf" value="Cpf:" />
-                <p:inputText id="cpf" value="#{agenteDeSaudeBean.agente.cpf}" requiredMessage="campo obrigatório!"  required="true" />
-                <p:message for="cpf" id="messageCpf" severity="error"/>
+                    <p:outputLabel for="senha" value="Senha:" />
+                    <p:password id="senha" value="#{agenteDeSaudeBean.agente.senha}" requiredMessage="campo obrigatório!" required="true" feedback="true"/>
+                    <p:message for="senha" id="messageSenha" severity="error"/>
 
-                <p:outputLabel for="senha" value="Senha:" />
-                <p:password id="senha" value="#{agenteDeSaudeBean.agente.senha}" requiredMessage="campo obrigatório!" required="true" feedback="true"/>
-                <p:message for="senha" id="messageSenha" severity="error"/>
+                </h:panelGrid>
 
-            </h:panelGrid>
+                <p:toolbarGroup>
+                    <p:commandButton action="#{agenteDeSaudeBean.salvar()}" value="Salvar" ajax="false" update="@form" title="Salvar" icon="ui-icon-check" validateClient="false"/>
+                </p:toolbarGroup>
+            </p:fieldset>
 
-            <p:toolbarGroup>
-                <p:commandButton action="#{agenteDeSaudeBean.salvar()}" value="Salvar" ajax="false" update="@form" title="Salvar" icon="ui-icon-check" validateClient="false"/>
-            </p:toolbarGroup>
-        </p:fieldset>
-   
-        <p:fieldset legend="Agentes de Saúde cadastrados">
-            <p:dataTable value="#{agenteDeSaudeBean.listar()}"  var="agenteAtual">
-                <p:column headerText="Opções">
-                    <p:commandButton id="editar" value="Editar" action="#{agenteDeSaudeBean.editar(agenteAtual)}" ajax="false" update="@form"></p:commandButton>
-                </p:column>                
-                <p:column headerText="Nome" >
-                    <h:outputText value="#{agenteAtual.nome}"></h:outputText>
-                </p:column> 
-                <p:column headerText="Sexo" >
-                    <h:outputText value="#{agenteAtual.sexo}"></h:outputText>
-                </p:column> 
-                 <p:column headerText="Telefone" >
-                    <h:outputText value="#{agenteAtual.telefone}"></h:outputText>
-                </p:column> 
-                 <p:column headerText="Email" >
-                    <h:outputText value="#{agenteAtual.email}"></h:outputText>
-                </p:column> 
-                <p:column headerText="Clínica" >
-                    <h:outputText value="#{agenteAtual.clinica}"></h:outputText>
-                </p:column> 
-                 <p:column headerText="Cpf" >
-                    <h:outputText value="#{agenteAtual.cpf}"></h:outputText>
-                </p:column>
-                 <p:column headerText="Senha" >
-                    <h:outputText value="#{agenteAtual.senha}"></h:outputText>
-                </p:column>
-            </p:dataTable>
-        </p:fieldset>
-    </h:form>    
+            <p:fieldset legend="Agentes de Saúde cadastrados">
+                <p:dataTable value="#{agenteDeSaudeBean.listar()}" id="#{agenteAtual.email}" var="agenteAtual">
+                    <p:column headerText="Opções">
+                        <p:commandButton id="editar" value="Editar"   onclick="carregaDados(agenteAtual.email);" action="#{agenteDeSaudeBean.editar(agenteAtual)}" ajax="false" update="@form"></p:commandButton>
+                    </p:column>                
+                    <p:column headerText="Nome" >
+                        <h:outputText value="#{agenteAtual.nome}"></h:outputText>
+                    </p:column> 
+                    <p:column headerText="Sexo" >
+                        <h:outputText value="#{agenteAtual.sexo}"></h:outputText>
+                    </p:column> 
+                    <p:column headerText="Telefone" >
+                        <h:outputText value="#{agenteAtual.telefone}"></h:outputText>
+                    </p:column> 
+                    <p:column headerText="Email" >
+                        <h:outputText value="#{agenteAtual.email}"></h:outputText>
+                    </p:column> 
+                    <p:column headerText="Clínica" >
+                        <h:outputText value="#{agenteAtual.clinica}"></h:outputText>
+                    </p:column> 
+                    <p:column headerText="Cpf" >
+                        <h:outputText value="#{agenteAtual.cpf}"></h:outputText>
+                    </p:column>
+                    <p:column headerText="Senha" >
+                        <h:outputText value="#{agenteAtual.senha}"></h:outputText>
+                    </p:column>
+                </p:dataTable>
+            </p:fieldset>
+        </h:form>    
+    </body>
+    <script type="text/javascript">
+        function carregaDados(email)
+        {
+            document.getElementById("nome").value = nome;
+            document.getElementById("sexo").value = sexo;
+            document.getElementById("telefone").value = telefone;
+            document.getElementById("email").value = email;
+            document.getElementById("clinica").value = clinica;
+            document.getElementById("cpf").value = cpf;
+        }
+
+    </script>
 </ui:decorate>

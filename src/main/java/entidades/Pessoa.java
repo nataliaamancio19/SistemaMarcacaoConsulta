@@ -1,6 +1,8 @@
 package entidades;
 
 import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.br.CPF;
 
 public class Pessoa  {
 
@@ -9,15 +11,34 @@ public class Pessoa  {
     @NotNull
     private String nome;
 
+    @NotNull
+    @Email(message = "Insira um email válido!")
     private String email;
     
+    @NotNull
     private String telefone;
     
     @NotNull
+    @CPF(message = "Insira um cpf válido!")
     private String cpf;
     
+    @NotNull
     private String sexo;
    
+    public Pessoa(String nome, String email, String telefone, String cpf, String sexo)
+    {
+        this.nome = nome;
+        this.email = email;
+        this.telefone = telefone;
+        this.cpf = cpf;
+        this.sexo = sexo;
+    }
+    
+    public Pessoa()
+    {
+    
+    }
+    
     public String getTelefone() {
         return telefone;
     }

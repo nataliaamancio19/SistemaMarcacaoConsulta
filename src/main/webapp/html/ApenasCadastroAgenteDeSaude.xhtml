@@ -17,8 +17,8 @@ and open the template in the editor.
                 <h:panelGrid columns="3">
 
                     <p:outputLabel for="nome" value="Nome:" />
-                    <p:inputText id="nome" value="#{agenteDeSaudeBean.agente.nome}" validatorMessage="Deve conter entre 5 à 30 caracteres.(somente letras)" requiredMessage="campo obrigatório!" required="true" >
-                        <f:validateLength minimum="5" maximum="30"/>
+                    <p:inputText id="nome" value="#{agenteDeSaudeBean.agente.nome}" validatorMessage="Deve conter no mínimo 5 caracteres." requiredMessage="campo obrigatório!" required="true" >
+                        <f:validateLength minimum="3"/>
                         <f:validateRegex pattern = "[A-Za-z ]+" />
                     </p:inputText>
                     <p:message for="nome" id="messageNome" severity="error"/>
@@ -31,10 +31,7 @@ and open the template in the editor.
                     <p:message for="sexo" id="messageSexo" severity="error"/>
 
                     <p:outputLabel for="telefone" value="Telefone:" />
-                    <p:inputText id="telefone" value="#{agenteDeSaudeBean.agente.telefone}" validatorMessage="Deve ter entre 8 à 9 números." requiredMessage="campo obrigatório!" required="true" >
-                        <f:validateLength minimum="8" maximum="9"/>
-                        <f:validateRegex pattern="[0-9]+"  />
-                    </p:inputText>
+                    <p:inputMask mask="(99)9999-9999" id="telefone" value="#{agenteDeSaudeBean.agente.telefone}" validatorMessage="Deve ter entre 8 à 9 números." requiredMessage="campo obrigatório!" required="true" />
                     <p:message for="telefone" id="messageTelefone" severity="error"/>
 
                     <p:outputLabel for="email" value="E-mail:" />
@@ -42,14 +39,14 @@ and open the template in the editor.
                     <p:message for="email" id="messageEmail" severity="error"/>
 
                     <p:outputLabel for="clinica" value="Clínica :" />
-                    <p:inputText id="clinica" value="#{agenteDeSaudeBean.agente.clinica}" validatorMessage="Deve conter entre 5 à 30 caracteres.(somente letras)" requiredMessage="campo obrigatório!"  required="true" >
+                    <p:inputText id="clinica" value="#{agenteDeSaudeBean.agente.clinica}" validatorMessage="Deve conter entre 5 à 30 caracteres." requiredMessage="campo obrigatório!"  required="true" >
                         <f:validateLength minimum="5" maximum="30"/>
                         <f:validateRegex pattern = "[A-Za-z ]+" />
                     </p:inputText>
                     <p:message for="clinica" id="messageEspecialidade" severity="error"/>
 
                     <p:outputLabel for="cpf" value="Cpf:" />
-                    <p:inputText id="cpf" value="#{agenteDeSaudeBean.agente.cpf}" requiredMessage="campo obrigatório!"  required="true" />
+                    <p:inputMask  mask="999.999.999-99" id="cpf" value="#{agenteDeSaudeBean.agente.cpf}" requiredMessage="campo obrigatório!"  required="true" />
                     <p:message for="cpf" id="messageCpf" severity="error"/>
 
                     <p:outputLabel for="senha" value="Senha:" />

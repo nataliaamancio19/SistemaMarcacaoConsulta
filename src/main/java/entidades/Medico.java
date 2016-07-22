@@ -16,6 +16,18 @@ public class Medico extends Pessoa {
     @Pattern(regexp = "[0-9]+")
     private String crm;
     
+    public Medico(String especialidade, String crm, String nome, String email, String telefone, String cpf, String sexo)
+    {
+        super(nome, email, telefone, cpf, sexo);
+        this.especialidade = especialidade;
+        this.crm = crm;
+    }
+    
+    public Medico()
+    {
+    
+    }
+    
     public String getEspecialidade() {
         return especialidade;
     }

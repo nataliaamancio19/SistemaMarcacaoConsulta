@@ -12,13 +12,18 @@
        <h:graphicImage library="imagens" style="width:1286px; left:672px;" name="papelDeParede.jpg"/>
         <h:form id="login">
             <p:fieldset legend="Login"  style=" left: 35%; position: absolute; top: 35%;">
-                <h:panelGrid columns="2">
+                <h:panelGrid columns="3">
+                    
                     <p:outputLabel value="E-mail: " for="email" />
-                    <p:inputText id="email" value="#{loginBean.email}"/>
+                    <p:inputText id="email" value="#{loginBean.agente.email}" required="true" requiredMessage="Preencha o email!"/>
+                    <p:message for="email" id="messageEmail" severity="error"/>
+                    
                     <p:outputLabel value="Senha: " for="senha" />
-                    <p:password id="senha" value="#{loginBean.senha}" />
-                    <p:commandButton value="Login" action="#{loginBean.validaLogin()}"/>
-                    <p:commandButton action="ApenasCadastroAgenteDeSaude" immediate="true" value="Cadastrar" />
+                    <p:password id="senha" value="#{loginBean.agente.senha}" required="true" requiredMessage="Preencha a senha!"/>
+                    <p:message for="senha" id="messageSenha" severity="error"/>
+                    
+                    <p:commandButton value="Login" ajax="false" update="@form" action="#{loginBean.validaLogin()}"/>
+                    <p:commandButton action="ApenasCadastroAgenteDeSaude" immediate="true" value="Cadastre-se" />
                 </h:panelGrid>
             </p:fieldset>
         </h:form>    

@@ -16,8 +16,22 @@ public class Paciente extends Pessoa  {
     private String cep;
 
     private Date dataNascimento;
-
-    EstadosDoBrasil estado;
+   
+    public Paciente(String numero_sus, String rua, String bairro, String cidade, String cep,String nome, String email, String telefone, String cpf, String sexo)
+    {
+        super(nome, email, telefone, cpf, sexo);
+        this.numero_sus = numero_sus;
+        this.rua = rua;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.cep = cep;
+       
+    };
+    
+    public Paciente()
+    {
+        
+    }
     
    public String getNumero_sus() {
         return numero_sus;
@@ -66,14 +80,4 @@ public class Paciente extends Pessoa  {
     public void setDataNascimento(Date dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
-
-    public EstadosDoBrasil getEstado() {
-        return estado;
-    }
-
-    public void setEstado(EstadosDoBrasil estado) {
-        this.estado = estado;
-    }
-  
-
 }
