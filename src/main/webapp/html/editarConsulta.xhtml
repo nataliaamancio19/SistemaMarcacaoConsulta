@@ -9,18 +9,18 @@
    
   <h:form id="consulta">
             <p:growl id="growl" autoUpdate="true" globalOnly="true" showDetail="true" life="4000" severity="info, warn"/>
-        <p:fieldset legend="Editar Consulta">
+            <p:fieldset legend="#{msgs.editarConsulta}">
            <h:panelGrid columns="2" cellpadding="5">
             
-            <p:outputLabel for="medico" value="Médico:" />
+               <p:outputLabel for="medico" value="#{msgs.doctor}:" />
             <p:selectOneMenu id="medico" converter="medicoConverter" value="#{consultaBean.consulta.medico}">
                    <f:selectItems value="#{medicoBean.listar()}" var="medico" itemValue="#{medico}" itemLabel="#{medico.nome}"  />
             </p:selectOneMenu>
            
-            <p:outputLabel for="paciente" value="Paciente:" />
+               <p:outputLabel for="paciente" value="#{msgs.paciente}:" />
             <p:inputText id="paciente" required="true" />
 
-            <p:outputLabel for="dataHorario" value="Data e Hora:" />
+            <p:outputLabel for="dataHorario" value="#{msgs.dataHora}:" />
             <p:inputText id="dataHorario" required="true" />
             </h:panelGrid>  
 
@@ -29,18 +29,18 @@
         </p:fieldset>
     </h:form>
     <h:form id="convidadoListar"> 
-        <p:fieldset legend="Consutas cadastradas">
+        <p:fieldset legend="#{msgs.consultaCadastrada}">
             <p:dataTable value="#{consultaBean.consulta}"  var="consultaAtual">
-                <p:column headerText="Opções">
-                    <p:commandButton id="editar" value="Editar" action="#{consultaBean.editar(consultaAtual)}" immediate="true"  update="@form"></p:commandButton>
+                <p:column headerText="#{msgs.options}">
+                    <p:commandButton id="editar" value="#{msgs.update}" action="#{consultaBean.editar(consultaAtual)}" immediate="true"  update="@form"></p:commandButton>
                 </p:column>                
-                <p:column headerText="Nome" >
+                <p:column headerText="#{msgs.name}" >
                     <h:outputText value="#{consultaAtual.medico.nome}"></h:outputText>
                 </p:column> 
-                <p:column headerText="Paciente" >
+                <p:column headerText="#{msgs.paciente}" >
                     <h:outputText value="#{consultaAtual.paciente.nome}"></h:outputText>
                 </p:column> 
-                 <p:column headerText="Data e Hora" >
+                <p:column headerText="#{msgs.dataHora}" >
                     <h:outputText value="#{consultaAtual.dataHora}"></h:outputText>
                 </p:column> 
             </p:dataTable>

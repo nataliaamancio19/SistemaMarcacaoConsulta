@@ -9,45 +9,45 @@
    
   <h:form id="consulta">
             <p:growl id="growl" autoUpdate="true" globalOnly="true" showDetail="true" life="4000" severity="info, warn"/>
-        <p:fieldset legend="Consulta">
+            <p:fieldset legend="#{msgs.consultas}">
            <h:panelGrid columns="3" cellpadding="5">
             
-            <p:outputLabel for="medico" value="Médico:" />
-            <p:selectOneMenu id="medico" converter="medicoConverter" required="true" requiredMessage="Campo obrigatório" value="#{consultaBean.consulta.medico}">
+               <p:outputLabel for="medico" value="#{msgs.doctor}:" />
+            <p:selectOneMenu id="medico" converter="medicoConverter" required="true" requiredMessage="#{msgs.cob}" value="#{consultaBean.consulta.medico}">
                 <f:selectItems value="#{medicoBean.listar()}" var="medicoAtual" itemValue="#{medicoAtual}" itemLabel="#{medicoAtual.nome}"  />
             </p:selectOneMenu>
            <br/>
            
-            <p:outputLabel for="paciente" value="Paciente:" />
-            <p:selectOneMenu id="paciente" converter="pacienteConverter" required="true" requiredMessage="Campo obrigatório" value="#{consultaBean.consulta.paciente}">
+           <p:outputLabel for="paciente" value="#{msgs.paciente}:" />
+            <p:selectOneMenu id="paciente" converter="pacienteConverter" required="true" requiredMessage="#{msgs.cob}" value="#{consultaBean.consulta.paciente}">
                 <f:selectItems value="#{pacienteBean.listar()}" var="pacienteAtual" itemValue="#{pacienteAtual}" itemLabel="#{pacienteAtual.nome}"  />
             </p:selectOneMenu>
             <br/>
             
-            <p:outputLabel for="dataHorario" value="Data e Hora:" />
-            <p:calendar id="dataHorario" value="#{consultaBean.consulta.dataHora}" requiredMessage="Campo Obrigatório!" required="true" pattern="yyyy/MM/dd HH:mm" />
+            <p:outputLabel for="dataHorario" value="#{msgs.dataHora}:" />
+            <p:calendar id="dataHorario" value="#{consultaBean.consulta.dataHora}" requiredMessage="#{msgs.cob}" required="true" pattern="yyyy/MM/dd HH:mm" />
             <p:message for="dataHorario" id="messageHorario" severity="error"/>
             </h:panelGrid>  
             
-                <p:commandButton action="#{consultaBean.salvar()}" value="Salvar" ajax="false" update="@form" 
+                <p:commandButton action="#{consultaBean.salvar()}" value="#{msgs.save}" ajax="false" update="@form" 
                                  title="Salvar" icon="ui-icon-check" validateClient="false"/>
-                <p:commandButton action="editarConsulta" immediate="true" value="Editar" />
+                <p:commandButton action="editarConsulta" immediate="true" value="#{msgs.update}" />
 
         </p:fieldset>
     </h:form>
     <h:form id="convidadoListar"> 
-        <p:fieldset legend="Consutas cadastradas">
+        <p:fieldset legend="#{msgs.consultaCadastrada}">
             <p:dataTable value="#{consultaBean.listar()}"  var="consultaAtual">
-                <p:column headerText="Opções">
-                    <p:commandButton id="deletar" value="Deletar" action="#{consultaBean.excluir(consultaAtual)}" immediate="true"  update="@form"></p:commandButton>
+                <p:column headerText="#{msgs.options}">
+                    <p:commandButton id="deletar" value="#{msgs.delete}" action="#{consultaBean.excluir(consultaAtual)}" immediate="true"  update="@form"></p:commandButton>
                 </p:column>                
-                <p:column headerText="Nome" >
+                <p:column headerText="#{msgs.name}" >
                     <h:outputText value="#{consultaAtual.medico.nome}"></h:outputText>
                 </p:column> 
-                <p:column headerText="Paciente" >
+                <p:column headerText="#{msgs.paciente}" >
                     <h:outputText value="#{consultaAtual.paciente.nome}"></h:outputText>
                 </p:column> 
-                 <p:column headerText="Data e Hora" >
+                <p:column headerText="#{msgs.dataHora}" >
                     <h:outputText value="#{consultaAtual.dataHora}"></h:outputText>
                 </p:column> 
             </p:dataTable>

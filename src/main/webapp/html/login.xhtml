@@ -14,11 +14,11 @@
             <p:fieldset legend="Login"  style=" left: 35%; position: absolute; top: 35%;">
                 <h:panelGrid columns="3">
                     
-                    <p:outputLabel value="E-mail: " for="email" />
+                    <p:outputLabel value="Email " for="email" />
                     <p:inputText id="email" value="#{loginBean.agente.email}" required="true" requiredMessage="Preencha o email!"/>
                     <p:message for="email" id="messageEmail" severity="error"/>
                     
-                    <p:outputLabel value="Senha: " for="senha" />
+                    <p:outputLabel value="senha" for="senha" />
                     <p:password id="senha" value="#{loginBean.agente.senha}" required="true" requiredMessage="Preencha a senha!"/>
                     <p:message for="senha" id="messageSenha" severity="error"/>
                     

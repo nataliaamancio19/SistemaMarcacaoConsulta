@@ -10,83 +10,83 @@
     <body>
     <h:form id="convidado">
         <p:growl id="growl" autoUpdate="true" globalOnly="true" showDetail="true" life="4000" severity="info, warn"/>
-        <p:fieldset legend="Médico">
+        <p:fieldset legend="#{msgs.doctor}">
             <h:panelGrid columns="3">
 
-                <p:outputLabel for="nome" value="Nome:" />
-                <p:inputText id="nome" value="#{medicoBean.medico.nome}" validatorMessage="Deve conter entre 5 à 30 caracteres.(somente letras)" requiredMessage="campo obrigatório!" required="true" >
+                <p:outputLabel for="nome" value="#{msgs.name}:" />
+                <p:inputText id="nome" value="#{medicoBean.medico.nome}" validatorMessage="#{msgs.vn}" requiredMessage="#{msgs.cob}" required="true" >
                     <f:validateLength minimum="5" maximum="30"/>
                     <f:validateRegex pattern = "[A-Za-z ]+" />
                 </p:inputText>
                 <p:message for="nome" id="messageNome" severity="error"/>
 
-                <p:outputLabel for="sexo" value="Sexo:" />
-                <p:selectOneRadio id="sexo" requiredMessage="campo obrigatório!" required="true" value="#{medicoBean.medico.sexo}">
-                    <f:selectItem itemLabel="Feminino" itemValue="Feminino" />
-                    <f:selectItem itemLabel="Masculino" itemValue="Masculino"/>
+                <p:outputLabel for="sexo" value="#{msgs.gender}:" />
+                <p:selectOneRadio id="sexo" requiredMessage="#{msgs.cob}" required="true" value="#{medicoBean.medico.sexo}">
+                    <f:selectItem itemLabel="#{msgs.female}" itemValue="feminino" />
+                    <f:selectItem itemLabel="#{msgs.male}" itemValue="Masculino"/>
                 </p:selectOneRadio>
                 <p:message for="sexo" id="messageSexo" severity="error"/>
 
-                <p:outputLabel for="telefone" value="Telefone:" />
-                <p:inputText id="telefone" value="#{medicoBean.medico.telefone}" validatorMessage="Deve ter entre 8 à 9 números." requiredMessage="campo obrigatório!" required="true" >
+                <p:outputLabel for="telefone" value="#{msgs.phone}:" />
+                <p:inputText id="telefone" value="#{medicoBean.medico.telefone}" validatorMessage="#{msgs.vn}" requiredMessage="#{msgs.cob}" required="true" >
                     <f:validateLength minimum="8" maximum="9"/>
                     <f:validateRegex pattern="[0-9]+"  />
                 </p:inputText>
                 <p:message for="telefone" id="messageTelefone" severity="error"/>
 
-                <p:outputLabel for="email" value="E-mail:" />
-                <p:inputText id="email" value="#{medicoBean.medico.email}" requiredMessage="campo obrigatório!"  required="true" />
+                <p:outputLabel for="email" value="#{msgs.email}:" />
+                <p:inputText id="email" value="#{medicoBean.medico.email}" requiredMessage="#{msgs.cob}"  required="true" />
                 <p:message for="email" id="messageEmail" severity="error"/>
 
-                <p:outputLabel for="crm" value="Crm:" />
-                <p:inputText id="crm" value="#{medicoBean.medico.crm}" validatorMessage="O crm deve ter entre 4 e 10 números."  requiredMessage="campo obrigatório!"  required="true" >
+                <p:outputLabel for="crm" value="#{msgs.crm}:" />
+                <p:inputText id="crm" value="#{medicoBean.medico.crm}" validatorMessage="#{msgs.vcrm}"  requiredMessage="#{msgs.cob}"  required="true" >
                     <f:validateLength minimum="4" maximum="10"/>
                     <f:validateRegex pattern="[0-9]+"  />
                 </p:inputText>
                 <p:message for="crm" id="messageCrm" severity="error"/>
 
-                <p:outputLabel for="especialidade" value="Especialidade :" />
-                <p:inputText id="especialidade" value="#{medicoBean.medico.especialidade}" validatorMessage="Deve conter entre 5 à 30 caracteres.(somente letras)" requiredMessage="campo obrigatório!"  required="true" >
+                <p:outputLabel for="especialidade" value="#{msgs.specialty}:" />
+                <p:inputText id="especialidade" value="#{medicoBean.medico.especialidade}" validatorMessage="#{msgs.vn}" requiredMessage="#{msgs.cob}"  required="true" >
                     <f:validateLength minimum="5" maximum="30"/>
                     <f:validateRegex pattern = "[A-Za-z ]+" />
                 </p:inputText>
                 <p:message for="especialidade" id="messageEspecialidade" severity="error"/>
 
-                <p:outputLabel for="cpf" value="Cpf:" />
-                <p:inputText id="cpf" value="#{medicoBean.medico.cpf}" requiredMessage="campo obrigatório!"  required="true" />
+                <p:outputLabel for="cpf" value="#{msgs.cpf}:" />
+                <p:inputText id="cpf" value="#{medicoBean.medico.cpf}" requiredMessage="#{msgs.cob}"  required="true" />
                 <p:message for="cpf" id="messageCpf" severity="error"/>
                 
             </h:panelGrid>
 
             <p:toolbarGroup>
-                <p:commandButton action="#{medicoBean.salvar()}" value="Salvar" ajax="false" update="@form" title="Salvar" icon="ui-icon-check" validateClient="false"/>
-                <p:commandButton action="editarMedico" ajax="false"  immediate="true" value="Editar" />
+                <p:commandButton action="#{medicoBean.salvar()}" value="#{msgs.save}" ajax="false" update="@form" title="Salvar" icon="ui-icon-check" validateClient="false"/>
+                <p:commandButton action="editarMedico" ajax="false"  immediate="true" value="#{msgs.update}" />
 
             </p:toolbarGroup>
         </p:fieldset>
     </h:form>
     <h:form id="convidadoListar"> 
-        <p:fieldset legend="Médicos cadastrados">
+        <p:fieldset legend="#{msgs.registeredDoctors}">
             <p:dataTable value="#{medicoBean.listar()}"  var="medicoAtual">
-                <p:column headerText="Opções">
-                    <p:commandButton id="deletar" value="Deletar" action="#{medicoBean.excluir(medicoAtual)}" immediate="true"  update="@form"></p:commandButton>
+                <p:column headerText="#{msgs.options}">
+                    <p:commandButton id="deletar" value="#{msgs.delete}" action="#{medicoBean.excluir(medicoAtual)}" immediate="true"  update="@form"></p:commandButton>
                 </p:column>                
-                <p:column headerText="Nome" >
+                <p:column headerText="#{msgs.name}" >
                     <h:outputText value="#{medicoAtual.nome}"></h:outputText>
                 </p:column> 
-                <p:column headerText="Sexo" >
+                <p:column headerText="#{msgs.gender}" >
                     <h:outputText value="#{medicoAtual.sexo}"></h:outputText>
                 </p:column> 
-                <p:column headerText="Telefone" >
+                <p:column headerText="#{msgs.phone}" >
                     <h:outputText value="#{medicoAtual.telefone}"></h:outputText>
                 </p:column> 
-                <p:column headerText="Email" >
+                <p:column headerText="#{msgs.email}" >
                     <h:outputText value="#{medicoAtual.email}"></h:outputText>
                 </p:column> 
-                <p:column headerText="Crm" >
+                <p:column headerText="#{msgs.crm}" >
                     <h:outputText value="#{medicoAtual.crm}"></h:outputText>
                 </p:column> 
-                <p:column headerText="Cpf" >
+                <p:column headerText="#{msgs.cpf}" >
                     <h:outputText value="#{medicoAtual.cpf}"></h:outputText>
                 </p:column> 
             </p:dataTable>

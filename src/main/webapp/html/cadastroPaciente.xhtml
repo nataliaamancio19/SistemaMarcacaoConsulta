@@ -9,75 +9,75 @@
    
     <h:form>  
         <p:growl id="growl" autoUpdate="true" globalOnly="true" showDetail="true" life="4000" severity="info, warn"/>    
-         <p:fieldset legend="Pacientes">
+        <p:fieldset legend="#{msgs.paciente}">
         <h:panelGrid columns="3" cellpadding="5">
-                <p:outputLabel for="nome" value="Nome:" />
-            <p:inputText id="nome" value="#{pacienteBean.paciente.nome}" validatorMessage="Deve conter entre 5 à 30 caracteres.(somente letras)" requiredMessage="campo obrigatório!" required="true">
+            <p:outputLabel for="nome" value="#{msgs.name}:" />
+            <p:inputText id="nome" value="#{pacienteBean.paciente.nome}" validatorMessage="#{msgs.vn}" requiredMessage="#{msgs.cob}" required="true">
              <f:validateLength minimum="5" maximum="30"/>
              <f:validateRegex pattern = "[A-Za-z ]+" />
              </p:inputText>
             <p:message for="nome" id="messageNome" severity="error"/>
            
-            <p:outputLabel for="cpf" value="Cpf:" />
-            <p:inputMask mask="999.999.999-99" id="cpf" required="true" requiredMessage="campo obrigatório!" value="#{pacienteBean.paciente.cpf}" />
+            <p:outputLabel for="cpf" value="#{msgs.cpf}:" />
+            <p:inputMask mask="999.999.999-99" id="cpf" required="true" requiredMessage="#{msgs.cob}" value="#{pacienteBean.paciente.cpf}" />
             <p:message for="cpf" id="messageCpf" severity="error"/>
            
-            <p:outputLabel for="sexo" value="Sexo:" />
-            <p:selectOneRadio id="sexo" requiredMessage="Campo obrigatório!" required="true" value="#{pacienteBean.paciente.sexo}">
-                    <f:selectItem itemLabel="Feminino" itemValue="Feminino" />
-                    <f:selectItem itemLabel="Masculino" itemValue="Masculino"/>
+            <p:outputLabel for="sexo" value="#{msgs.gender}:" />
+            <p:selectOneRadio id="sexo" requiredMessage="#{msgs.cob}" required="true" value="#{pacienteBean.paciente.sexo}">
+                <f:selectItem itemLabel="#{msgs.female}" itemValue="Feminino" />
+                <f:selectItem itemLabel="#{msgs.male}" itemValue="Masculino"/>
                 </p:selectOneRadio>
                 <p:message for="sexo" id="messageSexo" severity="error"/>
                
-            <p:outputLabel for="dataNascimento" value="Data de Nascimento:" />
-            <p:calendar id="dataNascimento" value="#{pacienteBean.paciente.dataNascimento}" showOn="button"  required="true" requiredMessage="Campo obrigatorio!" validatorMessage="Essa data deve ser menor que a data atual"/>
+                <p:outputLabel for="dataNascimento" value="#{msgs.dataNasc}:" />
+                <p:calendar id="dataNascimento" value="#{pacienteBean.paciente.dataNascimento}" showOn="button"  required="true" requiredMessage="#{msgs.cob}" validatorMessage="#{msgs.dataMenor}"/>
             <p:message for="dataNascimento" id="messageData" severity="error"/>
            
            
-            <p:outputLabel for="numeroSUS" value="Número do SUS:" />
-            <p:inputMask mask="999999999999999" id="numeroSUS"  value="#{pacienteBean.paciente.numero_sus}" requiredMessage="campo obrigatório!"  required="true" />
+            <p:outputLabel for="numeroSUS" value="#{msgs.numeroSUS}:" />
+            <p:inputMask mask="999999999999999" id="numeroSUS"  value="#{pacienteBean.paciente.numero_sus}" requiredMessage="#{msgs.cob}"  required="true" />
             <p:message for="numeroSUS" id="messageSUS" severity="error"/>
            
-             <p:outputLabel for="telefone" value="Telefone:" />
-             <p:inputMask id="telefone" value="#{pacienteBean.paciente.telefone}" mask="(99) 9999-9999" required="true" requiredMessage="Campo Obrigatorio" />  
+            <p:outputLabel for="telefone" value="#{msgs.phone}:" />
+             <p:inputMask id="telefone" value="#{pacienteBean.paciente.telefone}" mask="(99) 9999-9999" required="true" requiredMessage="#{msgs.cob}" />  
              <p:message for="telefone" id="messageTelefone" severity="error"/>
  
-            <p:outputLabel for="email" value="E-mail:" />
+             <p:outputLabel for="email" value="#{msgs.email}:" />
             <p:inputText id="email" value="#{pacienteBean.paciente.email}"/>
             <p:message for="email" id="messageEmail" severity="error"/>
  
-            <p:outputLabel for="cep" value="Cep: " />
-            <p:inputMask id="cep" value="#{pacienteBean.paciente.cep}" mask="99999-999" required="true" requiredMessage="Campo Obrigatório"/>  
+            <p:outputLabel for="cep" value="#{msgs.cep}:" />
+            <p:inputMask id="cep" value="#{pacienteBean.paciente.cep}" mask="99999-999" required="true" requiredMessage="#{msgs.cob}"/>  
             <p:message for="cep" id="messageCep" severity="error"/>
  
-            <p:commandButton action="#{pacienteBean.salvar()}" value="Salvar" ajax="false" update="@form"
+            <p:commandButton action="#{pacienteBean.salvar()}" value="#{msgs.save}" ajax="false" update="@form"
                                 title="Salvar" icon="ui-icon-check" validateClient="false"/>
            
             </h:panelGrid>  
          </p:fieldset>
     </h:form>
      <h:form id="convidadoListar">
-        <p:fieldset legend="Pacientes Cadastrados">
+         <p:fieldset legend="#{msgs.pacienteRegistrado}">
             <p:dataTable value="#{pacienteBean.consultar()}"  var="pacienteAtual">
-                <p:column headerText="Opções">
+                <p:column headerText="#{msgs.options}">
                     <p:commandButton id="deletar" value="Deletar" action="#{pacienteBean.excluir(pacienteAtual)}" immediate="true"  update="@form"></p:commandButton>
                 </p:column>                
-                <p:column headerText="Nome" >
+                <p:column headerText="#{msgs.name}" >
                     <h:outputText value="#{pacienteAtual.nome}"></h:outputText>
                 </p:column>
-                <p:column headerText="Sexo" >
+                <p:column headerText="#{msgs.gender}" >
                     <h:outputText value="#{pacienteAtual.sexo}"></h:outputText>
                 </p:column>
-                <p:column headerText="Telefone" >
+                <p:column headerText="#{msgs.phone}" >
                     <h:outputText value="#{pacienteAtual.telefone}"></h:outputText>
                 </p:column>
-                <p:column headerText="Email" >
+                <p:column headerText="#{msgs.email}" >
                     <h:outputText value="#{pacienteAtual.email}"></h:outputText>
                 </p:column>
-               <p:column headerText="Data Nascimento" >
+                <p:column headerText="#{msgs.dataNasc}" >
                    <h:outputText value="#{pacienteAtual.dataexibicao}"></h:outputText>
                 </p:column>
-                <p:column headerText="Numero do SUS" >
+                <p:column headerText="#{msgs.numeroSUS}" >
                      <h:outputText value="#{pacienteAtual.numero_sus}"></h:outputText>
                 </p:column>
             </p:dataTable>

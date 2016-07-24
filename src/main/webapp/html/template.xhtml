@@ -9,22 +9,22 @@
     </h:head>
     <h:body>
         <div>
-            <p:panel header="Sistema de Marcação de Consultas" style="text-align: center;">
+            <p:panel header="#{msgs.sistemaMarCons}" style="text-align: center;">
                 <div>
                     <div style="float: left;">
                         <h:form>
                             <p:menu toggleable="true" style="width: 250px; height: 570px; " >
-                                <p:submenu label="Consultas">
-                                <p:menuitem value="Listagem das Consultas" url="/faces/html/newxhtml.xhtml"/>
-                                <p:menuitem value="Marcar Consultas" url="/faces/html/cadastroConsulta.xhtml" />
+                                <p:submenu label="#{msgs.consultas}">
+                                    <p:menuitem value="#{msgs.listagemConsultas}" url="/faces/html/newxhtml.xhtml"/>
+                                    <p:menuitem value="#{msgs.marcarConsulta}" url="/faces/html/cadastroConsulta.xhtml" />
                                 </p:submenu>
-                                <p:submenu label="Cadastro">
-                                <p:menuitem value="Pacientes" url="/faces/html/cadastroPaciente.xhtml"/>
-                                <p:menuitem value="Médicos"  url="/faces/html/cadastroMedico.xhtml"/>
-                                <p:menuitem value="Agente de Saúde"  url="/faces/html/cadastroAgenteDeSaude.xhtml"/>
+                                <p:submenu label="#{msgs.cadastro}">
+                                    <p:menuitem value="#{msgs.paciente}" url="/faces/html/cadastroPaciente.xhtml"/>
+                                    <p:menuitem value="#{msgs.doctor}"  url="/faces/html/cadastroMedico.xhtml"/>
+                                    <p:menuitem value="#{msgs.agenteSaude}"  url="/faces/html/cadastroAgenteDeSaude.xhtml"/>
                                 </p:submenu>
-                                <p:submenu label="Sair">
-                                <p:menuitem value="Sair" url="/faces/html/login.xhtml"/>
+                                <p:submenu label="#{msgs.sair}">
+                                <p:menuitem value="#{msgs.sair}" url="/faces/html/login.xhtml"/>
                                 </p:submenu>
                             </p:menu>
                         </h:form>
