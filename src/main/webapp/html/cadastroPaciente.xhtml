@@ -5,7 +5,8 @@
             xmlns:p="http://primefaces.org/ui"
             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
             template="template.xhtml"
-            xmlns:f="http://xmlns.jcp.org/jsf/core">
+            xmlns:f="http://xmlns.jcp.org/jsf/core"
+            xmlns:ez="http://xmlns.jcp.org/jsf/composite/componentesReusados">
    
     <h:form>  
         <p:growl id="growl" autoUpdate="true" globalOnly="true" showDetail="true" life="4000" severity="info, warn"/>    
@@ -42,14 +43,14 @@
              <p:inputMask id="telefone" value="#{pacienteBean.paciente.telefone}" mask="(99) 9999-9999" required="true" requiredMessage="#{msgs.cob}" />  
              <p:message for="telefone" id="messageTelefone" severity="error"/>
  
-             <p:outputLabel for="email" value="#{msgs.email}:" />
-            <p:inputText id="email" value="#{pacienteBean.paciente.email}"/>
-            <p:message for="email" id="messageEmail" severity="error"/>
- 
             <p:outputLabel for="cep" value="#{msgs.cep}:" />
             <p:inputMask id="cep" value="#{pacienteBean.paciente.cep}" mask="99999-999" required="true" requiredMessage="#{msgs.cob}"/>  
             <p:message for="cep" id="messageCep" severity="error"/>
  
+            <br/>
+            <ez:inputCompleto required="true" requiredMessage="#{msgs.cob}" idInput="email" severity="error" valueInput="#{pacienteBean.paciente.email}"
+                                  valueOutput="#{msgs.email}" idMessage="emailMessage"/>
+             <br/>
             <p:commandButton action="#{pacienteBean.salvar()}" value="#{msgs.save}" ajax="false" update="@form"
                                 title="Salvar" icon="ui-icon-check" validateClient="false"/>
            

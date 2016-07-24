@@ -5,7 +5,8 @@
              xmlns:p="http://primefaces.org/ui"
              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
              template="template.xhtml"
-             xmlns:f="http://xmlns.jcp.org/jsf/core">
+             xmlns:f="http://xmlns.jcp.org/jsf/core"
+             xmlns:ez="http://xmlns.jcp.org/jsf/composite/componentesReusados">
 
     <body>
     <h:form id="convidado">
@@ -33,11 +34,7 @@
                     <f:validateRegex pattern="[0-9]+"  />
                 </p:inputText>
                 <p:message for="telefone" id="messageTelefone" severity="error"/>
-
-                <p:outputLabel for="email" value="#{msgs.email}:" />
-                <p:inputText id="email" value="#{medicoBean.medico.email}" requiredMessage="#{msgs.cob}"  required="true" />
-                <p:message for="email" id="messageEmail" severity="error"/>
-
+               
                 <p:outputLabel for="crm" value="#{msgs.crm}:" />
                 <p:inputText id="crm" value="#{medicoBean.medico.crm}" validatorMessage="#{msgs.vcrm}"  requiredMessage="#{msgs.cob}"  required="true" >
                     <f:validateLength minimum="4" maximum="10"/>
@@ -55,6 +52,10 @@
                 <p:outputLabel for="cpf" value="#{msgs.cpf}:" />
                 <p:inputText id="cpf" value="#{medicoBean.medico.cpf}" requiredMessage="#{msgs.cob}"  required="true" />
                 <p:message for="cpf" id="messageCpf" severity="error"/>
+                
+                <br/>
+                <ez:inputCompleto required="true" requiredMessage="#{msgs.cob}" idInput="email" severity="error" valueInput="#{medicoBean.medico.email}"
+                                  valueOutput="#{msgs.email}" idMessage="emailMessage"/>
                 
             </h:panelGrid>
 

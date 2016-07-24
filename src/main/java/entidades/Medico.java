@@ -44,4 +44,9 @@ public class Medico extends Pessoa {
         this.crm = crm;
     }
 
+     @Override
+    public int hashCode()
+    {
+        return super.hashCode(); //To change body of generated methods, choose Tools | Templates.
+    }
 }

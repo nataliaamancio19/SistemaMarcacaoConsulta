@@ -12,14 +12,14 @@
             <p:fieldset legend="#{msgs.consultas}">
            <h:panelGrid columns="3" cellpadding="5">
             
-               <p:outputLabel for="medico" value="#{msgs.doctor}:" />
-            <p:selectOneMenu id="medico" converter="medicoConverter" required="true" requiredMessage="#{msgs.cob}" value="#{consultaBean.consulta.medico}">
+            <p:outputLabel for="medico" value="#{msgs.doctor}:" />
+            <p:selectOneMenu id="medico" converter="medicoConverter1" required="true" requiredMessage="#{msgs.cob}" value="#{consultaBean.consulta.medico}">
                 <f:selectItems value="#{medicoBean.listar()}" var="medicoAtual" itemValue="#{medicoAtual}" itemLabel="#{medicoAtual.nome}"  />
             </p:selectOneMenu>
            <br/>
            
-           <p:outputLabel for="paciente" value="#{msgs.paciente}:" />
-            <p:selectOneMenu id="paciente" converter="pacienteConverter" required="true" requiredMessage="#{msgs.cob}" value="#{consultaBean.consulta.paciente}">
+            <p:outputLabel for="paciente" value="#{msgs.paciente}:" />
+            <p:selectOneMenu id="paciente" converter="pacienteConverter1" required="true" requiredMessage="#{msgs.cob}" value="#{consultaBean.consulta.paciente}">
                 <f:selectItems value="#{pacienteBean.listar()}" var="pacienteAtual" itemValue="#{pacienteAtual}" itemLabel="#{pacienteAtual.nome}"  />
             </p:selectOneMenu>
             <br/>

@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <cc:attribute name="idInput" required="true"/>
+        <cc:attribute name="valueOutput" required="true"/>        
+        <cc:attribute name="valueInput" required="true"/>
+        <cc:attribute name="requiredMessage" />
+        <cc:attribute name="required"/>
+        <cc:attribute name="idMessage"/>
+        <cc:attribute name="severity" required="true"/>
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+            <p:outputLabel for="#{cc.attrs.idInput}" value="#{cc.attrs.valueOutput}:" />
+            <p:inputText style="display: inline-table;" id="#{cc.attrs.idInput}" value="#{cc.attrs.valueInput}" requiredMessage="#{cc.attrs.requiredMessage}"  required="#{cc.attrs.required}" />
+            <p:message style="display: inline;" for="#{cc.attrs.idInput}" id="#{cc.attrs.idMessage}" severity="#{cc.attrs.severity}"/>
+       </cc:implementation>
+</html>

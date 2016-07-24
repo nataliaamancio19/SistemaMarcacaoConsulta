@@ -71,4 +71,9 @@ public class Paciente extends Pessoa  {
         this.dataNascimento = dataNascimento;
     }
  
+     @Override
+    public int hashCode()
+    {
+        return super.hashCode(); //To change body of generated methods, choose Tools | Templates.
+    }
 }

@@ -3,7 +3,8 @@
              xmlns:p="http://primefaces.org/ui"
              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
              template="template.xhtml"
-             xmlns:f="http://xmlns.jcp.org/jsf/core">
+             xmlns:f="http://xmlns.jcp.org/jsf/core"
+             xmlns:ez="http://xmlns.jcp.org/jsf/composite/componentesReusados">
 
     <h:form id="celular">
         <p:fieldset legend="#{msgs.editarMedico}">
@@ -48,6 +49,9 @@
                 </p:inputText>
                 <p:message for="especialidade" id="messageEspecialidade" severity="error"/>
 
+                   <br/>
+                <ez:inputCompleto required="true" requiredMessage="#{msgs.cob}" idInput="email" severity="error" valueInput="#{medicoBean.medico.email}"
+                                  valueOutput="#{msgs.email}" idMessage="emailMessage"/>
             </h:panelGrid>
 
         </p:fieldset>
