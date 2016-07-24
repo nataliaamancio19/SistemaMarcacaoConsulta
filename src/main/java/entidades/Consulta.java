@@ -8,8 +8,10 @@ public class Consulta {
 
     private int id;
     
-    
+    @NotNull
     private Paciente paciente;
+    
+    @NotNull
     private Medico medico;
     
     @NotNull
@@ -29,7 +31,7 @@ public class Consulta {
     }
 
     public void setPaciente(Paciente paciente) {
-        this.paciente = paciente;
+            this.paciente = paciente;
     }
 
     public Medico getMedico() {

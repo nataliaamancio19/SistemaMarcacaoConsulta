@@ -16,9 +16,9 @@ public class AgenteSaude extends Pessoa{
     @Size(min = 6)
     private String senha; 
 
-    public AgenteSaude(String senha, String clinica, String nome, String email, String telefone, String cpf, String sexo)
+    public AgenteSaude(String senha, String clinica, String nome, String email, String telefone, String cpf, String sexo, Integer id)
     {
-        super(nome, email, telefone, cpf, sexo);
+        super(nome, email, telefone, cpf, sexo, id);
         this.senha = senha;
         this.clinica = clinica;
     }

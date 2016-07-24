@@ -10,19 +10,23 @@
   <h:form id="consulta">
             <p:growl id="growl" autoUpdate="true" globalOnly="true" showDetail="true" life="4000" severity="info, warn"/>
         <p:fieldset legend="Consulta">
-           <h:panelGrid columns="2" cellpadding="5">
+           <h:panelGrid columns="3" cellpadding="5">
             
             <p:outputLabel for="medico" value="Médico:" />
-            <p:selectOneMenu id="medico" converter="medicoConverter" value="#{consultaBean.consulta.medico}">
-                   <f:selectItems value="#{medicoBean.listar()}" var="medico" itemValue="#{medico}" itemLabel="#{medico.nome}"  />
+            <p:selectOneMenu id="medico" converter="medicoConverter" required="true" requiredMessage="Campo obrigatório" value="#{consultaBean.consulta.medico}">
+                <f:selectItems value="#{medicoBean.listar()}" var="medicoAtual" itemValue="#{medicoAtual}" itemLabel="#{medicoAtual.nome}"  />
             </p:selectOneMenu>
+           <br/>
            
             <p:outputLabel for="paciente" value="Paciente:" />
-            <p:inputText id="paciente" value="#{consultaBean.consulta.paciente}" />
-
+            <p:selectOneMenu id="paciente" converter="pacienteConverter" required="true" requiredMessage="Campo obrigatório" value="#{consultaBean.consulta.paciente}">
+                <f:selectItems value="#{pacienteBean.listar()}" var="pacienteAtual" itemValue="#{pacienteAtual}" itemLabel="#{pacienteAtual.nome}"  />
+            </p:selectOneMenu>
+            <br/>
+            
             <p:outputLabel for="dataHorario" value="Data e Hora:" />
-            <p:calendar id="dataHorario" value="#{consultaBean.consulta.dataHora}" required="true" pattern="yyyy/MM/dd HH:mm:ss" />
-         
+            <p:calendar id="dataHorario" value="#{consultaBean.consulta.dataHora}" requiredMessage="Campo Obrigatório!" required="true" pattern="yyyy/MM/dd HH:mm" />
+            <p:message for="dataHorario" id="messageHorario" severity="error"/>
             </h:panelGrid>  
             
                 <p:commandButton action="#{consultaBean.salvar()}" value="Salvar" ajax="false" update="@form" 

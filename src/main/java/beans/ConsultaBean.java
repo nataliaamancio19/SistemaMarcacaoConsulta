@@ -21,10 +21,12 @@ public class ConsultaBean implements Serializable {
         consulta = new Consulta();
     }
 
-    public void salvar() {
+    public void salvar() 
+    {
         if (dados.adicionarConsulta(consulta)) {
             adicionarMessagem(FacesMessage.SEVERITY_INFO, "Consulta salva com sucesso!");
-        } else {
+        } 
+        else {
             adicionarMessagem(FacesMessage.SEVERITY_INFO, "Consulta já existe!");
         }
 
@@ -47,7 +49,7 @@ public class ConsultaBean implements Serializable {
     }
 
     public ArrayList listar() {
-        return dados.getListaDeConsultas();
+        return Dados.getListaDeConsultas();
     }
 
     public void excluir(Consulta c) 

@@ -4,25 +4,35 @@ import entidades.AgenteSaude;
 import entidades.Consulta;
 import entidades.Medico;
 import entidades.Paciente;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public final class Dados {
 
 
     static ArrayList<Medico> listaDeMedicos = new ArrayList<Medico>()
-    {{ add(new Medico("Endocrinologista", "1234", "Ana", "ana@gmail.com", "8196562545", "03212165584", "feminino")); }};
-    static ArrayList<Paciente> listaDePacientes = new ArrayList<>();
+    {{ add(new Medico("Endocrinologista", "1234", "Ana", "ana@gmail.com", "(81)9656-2545", "03212165584", "feminino", 1)); }};
+    static ArrayList<Paciente> listaDePacientes = new ArrayList<Paciente>()
+    {{  try {
+        add(new Paciente("987654321123456", "53410019", "Maria", "maria@gmail.com", "(81)9977-6651", "08982824354", "Feminino", 1, new SimpleDateFormat("dd/MM/yyyy").parse("19/09/1995")));
+        } catch (ParseException ex) {
+            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, ex);
+        }
+}};
     static ArrayList<Consulta> listaDeConsultas = new ArrayList<>();
     static ArrayList<AgenteSaude> listaDeAgenteSaude = new ArrayList<AgenteSaude>()
-    {{ add(new AgenteSaude("fulano123", "Santa Tereza", "Fulano", "fulano@gmail.com", "8199999999", "089.828.254.65", "masculino")); }};
+    {{ add(new AgenteSaude("fulano123", "Santa Tereza", "Fulano", "fulano@gmail.com", "(81)9999-9999", "089.828.254.65", "masculino", 1)); }};
 
     boolean jaExiste;
-    static int id_medico, id_paciente, id_consulta, id_agenteSaude;
+    static int id_medico = 1, id_paciente = 1, id_consulta = 1, id_agenteSaude = 1;
 
     public Dados() 
     {
-    
+                
     }
 
     public boolean validaLogin(String email, String senha)

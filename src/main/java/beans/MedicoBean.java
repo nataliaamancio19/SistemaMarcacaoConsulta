@@ -3,7 +3,7 @@ package beans;
 import dados.Dados;
 import entidades.Medico;
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -42,10 +42,9 @@ public class MedicoBean implements Serializable {
             adicionarMessagem(FacesMessage.SEVERITY_INFO, "Médico já existe!");
         }
         
-        
     }
   
-    public ArrayList<Medico> listar()
+    public List<Medico> listar()
     {
       return Dados.getListaDeMedicos();
     }
@@ -65,6 +64,7 @@ public class MedicoBean implements Serializable {
     
     public void editar(Medico medicoAtual)
     {
+      
       if(dados.editarMedico(medicoAtual, medico))
       {
          adicionarMessagem(FacesMessage.SEVERITY_INFO, "Médico editado com sucesso!");

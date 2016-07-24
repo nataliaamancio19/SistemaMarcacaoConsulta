@@ -25,13 +25,14 @@ public class Pessoa  {
     @NotNull
     private String sexo;
    
-    public Pessoa(String nome, String email, String telefone, String cpf, String sexo)
+    public Pessoa(String nome, String email, String telefone, String cpf, String sexo, Integer id)
     {
         this.nome = nome;
         this.email = email;
         this.telefone = telefone;
         this.cpf = cpf;
         this.sexo = sexo;
+        this.id = id;
     }
     
     public Pessoa()

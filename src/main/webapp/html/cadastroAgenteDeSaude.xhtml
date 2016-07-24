@@ -5,19 +5,19 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       template="template.xhtml"    
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://java.sun.com/jsf/composite/componentesReusados">
 
     <h:form id="AgenteDeSaude">
         <p:growl id="growl" autoUpdate="true" globalOnly="true" showDetail="true" life="4000" severity="info, warn"/>
         <p:fieldset legend="Agente de Saúde">
             <h:panelGrid columns="3">
 
-                <p:outputLabel for="nome" value="Nome:" />
+                <p:outputLabel value="Nome:" for="nome"/>
                 <p:inputText id="nome" value="#{agenteDeSaudeBean.agente.nome}" validatorMessage="Deve conter entre 5 à 30 caracteres.(somente letras)" requiredMessage="campo obrigatório!" required="true" >
                     <f:validateLength minimum="5" maximum="30"/>
                     <f:validateRegex pattern = "[A-Za-z ]+" />
-                </p:inputText>
+                </p:inputText> 
                 <p:message for="nome" id="messageNome" severity="error"/>
 
                 <p:outputLabel for="sexo" value="Sexo:" />
@@ -53,14 +53,14 @@
                 <p:message for="senha" id="messageSenha" severity="error"/>
 
             </h:panelGrid>
-
             <p:toolbarGroup>
                 <p:commandButton action="#{agenteDeSaudeBean.salvar()}" value="Salvar" ajax="false" update="@form" title="Salvar" icon="ui-icon-check" validateClient="false"/>
-                <p:commandButton action="editarAgendeDeSaudeBean" ajax="false" immediate="true" value="Editar" />
-            </p:toolbarGroup>
+                <a:novoOutput acao="editarAgendeDeSaudeBean.xhtml" ajax="false" naoValidarCampos="true" valor="Editar"/>
+                <p:commandButton action="editar" ajax="false" immediate="true" value="Editar" />
+            
+              </p:toolbarGroup>
         </p:fieldset>
     </h:form>
-    
     
       <h:form id="AgenteDeSaudeListar"> 
         <p:fieldset legend="Agentes de Saúde cadastrados">
