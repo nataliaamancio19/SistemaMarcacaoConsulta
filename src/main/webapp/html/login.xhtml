@@ -15,11 +15,11 @@
                 <h:panelGrid columns="3">
                     
                     <p:outputLabel value="#{msgs.email}:" for="email" />
-                    <p:inputText id="email" value="#{loginBean.agente.email}" required="true" requiredMessage="Preencha o email!"/>
+                    <p:inputText id="email" value="#{loginBean.agente.email}" required="true" requiredMessage="#{msgs.enterEmail}"/>
                     <p:message for="email" id="messageEmail" severity="error"/>
                     
                     <p:outputLabel value="#{msgs.senha}:" for="senha" />
-                    <p:password id="senha" value="#{loginBean.agente.senha}" required="true" requiredMessage="Preencha a senha!"/>
+                    <p:password id="senha" value="#{loginBean.agente.senha}" required="true" requiredMessage="#{msgs.enterSenha}"/>
                     <p:message for="senha" id="messageSenha" severity="error"/>
                     
                     <p:commandButton value="#{msgs.login}" ajax="false" update="@form" action="#{loginBean.validaLogin()}"/>

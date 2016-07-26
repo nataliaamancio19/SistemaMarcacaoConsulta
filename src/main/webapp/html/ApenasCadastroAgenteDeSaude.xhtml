@@ -18,7 +18,7 @@ and open the template in the editor.
                 <h:panelGrid columns="3">
 
                     <p:outputLabel for="nome" value="#{msgs.name}:" />
-                    <p:inputText id="nome" value="#{agenteDeSaudeBean.agente.nome}" validatorMessage="Deve conter no mínimo 5 caracteres." requiredMessage="#{msgs.cob}" required="true" >
+                    <p:inputText id="nome" value="#{agenteDeSaudeBean.agente.nome}" validatorMessage="#{msgs.vnome}" requiredMessage="#{msgs.cob}" required="true" >
                         <f:validateLength minimum="3"/>
                         <f:validateRegex pattern = "[A-Za-z ]+" />
                     </p:inputText>
@@ -32,7 +32,7 @@ and open the template in the editor.
                     <p:message for="sexo" id="messageSexo" severity="error"/>
 
                     <p:outputLabel for="telefone" value="#{msgs.phone}:" />
-                    <p:inputMask mask="(99)9999-9999" id="telefone" value="#{agenteDeSaudeBean.agente.telefone}" validatorMessage="Deve ter entre 8 à 9 números." requiredMessage="#{msgs.cob}" required="true" />
+                    <p:inputMask mask="(99)9999-9999" id="telefone" value="#{agenteDeSaudeBean.agente.telefone}" validatorMessage="#{msgs.vphone}" requiredMessage="#{msgs.cob}" required="true" />
                     <p:message for="telefone" id="messageTelefone" severity="error"/>
 
                     <p:outputLabel for="email" value="#{msgs.email}:" />
